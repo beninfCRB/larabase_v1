@@ -4,18 +4,16 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class datatable extends Component
+class UpdateButton extends Component
 {
     /**
      * Create a new component instance.
      *
      * @return void
      */
-
-    public $data;
-    public function __construct($data)
+    public function __construct()
     {
-        $this->data = $data;
+        //
     }
 
     /**
@@ -25,7 +23,6 @@ class datatable extends Component
      */
     public function render()
     {
-        $table = $this->data;
-        return view('components.data-table', compact('table'));
+        return view('components.update-button');
     }
 }

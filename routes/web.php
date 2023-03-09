@@ -22,6 +22,6 @@ Auth::routes();
 Route::get('/', [HomeController::class, 'index']);
 
 Route::middleware(['auth', 'Role:admin'])->group(function () {
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
-    Route::resource('/akun', UserController::class);
+    Route::get('home', [HomeController::class, 'index'])->name('home');
+    Route::resource('users', UserController::class);
 });

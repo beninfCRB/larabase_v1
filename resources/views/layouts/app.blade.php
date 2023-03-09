@@ -19,6 +19,8 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('assets/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
 
     <!-- Custom styles for this page -->
     <link href="{{ asset('assets/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
@@ -90,6 +92,8 @@
             <script src="{{ asset('assets/js/demo/datatables-demo.js') }}"></script>
         </div>
     </div>
+    @include('sweetalert::alert')
+    @stack('scripts')
 </body>
 
 </html>

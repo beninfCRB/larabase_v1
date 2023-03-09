@@ -1,6 +1,8 @@
 <?php
 
-trait math
+namespace App\Traits;
+
+trait Kmedoids
 {
     public function distance($data, $kluster)
     {

@@ -2,7 +2,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('') }}">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/') }}">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <img src="{{ asset('image/logo.png') }}" width="50px" height="auto" />
                 </div>
@@ -14,7 +14,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="{{ url('/') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -101,7 +101,7 @@
             <!-- Nav Item - Tables -->
             @if (auth()->user()->role == 'admin')
                 <li class="nav-item {{ strstr($title, 'Kelola Akun') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ url('akun') }}">
+                    <a class="nav-link" href="{{ route('users.index') }}">
                         <i class="fas fa-users"></i>
                         <span>Kelola Akun</span></a>
                 </li>

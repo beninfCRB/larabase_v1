@@ -21,6 +21,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('a'),
             'picture' => null,
             'role' => 'admin',
+            'isActive' => true,
             'email_verified_at' => now(),
             'created_at' => now(),
             'updated_at' => now(),
