@@ -1,21 +1,20 @@
-<x-applayout title="Confirm Password">
+<x-applayout title="Konfirmasi Kata Sandi">
     <div class="container">
         <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-8">
                         <div class="card">
-                            <div class="card-header">{{ __('Confirm Password') }}</div>
-
                             <div class="card-body">
-                                {{ __('Please confirm your password before continuing.') }}
+                                <div class="mx-auto text-center mb-4">{{ __('Konfirmasi Kata Sandi') }}</div>
+                                {{ __('Harap konfirmasi kata sandi Anda sebelum melanjutkan.') }}
 
                                 <form method="POST" action="{{ route('password.confirm') }}">
                                     @csrf
 
                                     <div class="row mb-3">
                                         <label for="password"
-                                            class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                                            class="col-md-4 col-form-label text-md-end">{{ __('Kata Sandi') }}</label>
 
                                         <div class="col-md-6">
                                             <input id="password" type="password"
@@ -33,12 +32,12 @@
                                     <div class="row mb-0">
                                         <div class="col-md-8 offset-md-4">
                                             <button type="submit" class="btn btn-primary">
-                                                {{ __('Confirm Password') }}
+                                                {{ __('Konfirmasi Kata Sandi') }}
                                             </button>
 
                                             @if (Route::has('password.request'))
                                                 <a class="btn btn-link" href="{{ route('password.request') }}">
-                                                    {{ __('Forgot Your Password?') }}
+                                                    {{ __('Lupa Kata Sandi?') }}
                                                 </a>
                                             @endif
                                         </div>

@@ -1,28 +1,30 @@
-<x-applayout title="Verify Email">
+<x-applayout title="Verifikasi Email">
     <main>
         <div class="container">
             <section
                 class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
                 <div class="container">
                     <div class="row justify-content-center">
-                        <div class="col-md-8">
+                        <div class="col-md-4">
                             <div class="card">
-                                <div class="card-header">{{ __('Verify Your Email Address') }}</div>
-
                                 <div class="card-body">
+                                    <div class="mx-auto text-center mb-4">{{ __('Verifikasi alamat email Anda') }}</div>
                                     @if (session('resent'))
                                         <div class="alert alert-success" role="alert">
-                                            {{ __('A fresh verification link has been sent to your email address.') }}
+                                            {{ __('Tautan verifikasi telah dikirim ke alamat email Anda.') }}
                                         </div>
                                     @endif
 
-                                    {{ __('Before proceeding, please check your email for a verification link.') }}
-                                    {{ __('If you did not receive the email') }},
-                                    <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
-                                        @csrf
-                                        <button type="submit"
-                                            class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.
-                                    </form>
+                                    <div class="text-center">
+                                        {{ __('Email anda belum diverifikasi') }},
+                                        {{ __('Klik tautan verifikasi email ini.') }}
+                                        <form class="d-inline" method="POST"
+                                            action="{{ route('verification.resend') }}">
+                                            @csrf
+                                            <button type="submit"
+                                                class="btn btn-link p-0 m-0 align-baseline">{{ __('klik di sini') }}</button>.
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>

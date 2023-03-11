@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\DataTables\UsersDataTable;
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
 use App\Traits\UseMessage;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Auth;
@@ -18,11 +20,24 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     use UseMessage;
+    use RegistersUsers;
+    protected $redirectTo = RouteServiceProvider::HOME;
     public $title = 'Kelola Akun';
 
     public function __construct()
     {
         $this->Alert();
+    }
+
+    public function validation(Request $request)
+    {
+        return $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'max:255'],
+            'password' => ['required', 'string', 'min:3', 'confirmed'],
+            'role' => ['required', 'string'],
+            'is_active' => ['sometimes', 'boolean']
+        ]);
     }
 
     public function index(UsersDataTable $dataTable)
@@ -52,13 +67,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => ['required', 'unique:users', 'string', 'max:255'],
-            'email' => ['required', 'unique:users', 'string', 'email', 'max:255'],
-            'password' => ['required', 'confirmed', 'min:8', Rules\Password::defaults()],
-            'role' => ['required', 'string'],
-            'isActive' => ['nullable', 'boolean']
-        ]);
+        $this->validation($request);
 
         try {
             User::create([
@@ -66,8 +75,9 @@ class UserController extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'role' => $request->role,
-                'isActive' => $request->has('isActive') == "1" ? "1" : "0"
+                'is_active' => $request->has('is_active') == "1" ? "1" : "0"
             ]);
+
             return redirect()->route('users.index')->with('success', 'Data berhasil ditambahkan');
         } catch (\Exception $e) {
             return redirect()->route('users.index')->with('error', 'Data gagal ditambahkan');
@@ -108,13 +118,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'max:255'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'role' => ['required', 'string'],
-            'isActive' => ['sometimes', 'boolean']
-        ]);
+        $this->validation($request);
 
         try {
             $user = User::find($id);
@@ -123,7 +127,7 @@ class UserController extends Controller
                 'email' => $request->email,
                 'password' => $request->password,
                 'role' => $request->role,
-                'isActive' => $request->has('isActive') == "1" ? "1" : "0"
+                'is_active' => $request->has('is_active') == "1" ? "1" : "0"
             ]);
             return redirect()->route('users.index')->with('success', 'Data berhasil diubah');
         } catch (\Exception $e) {

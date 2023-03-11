@@ -1,4 +1,4 @@
-<x-applayout title="Register">
+<x-applayout title="Daftar">
     <main>
         <div class="container">
             <section
@@ -14,15 +14,15 @@
                                     <div class="pt-4 pb-3 text-center">
                                         <img src="{{ asset('image/logo.png') }}" alt="" width="100px"
                                             height="auto">
-                                        <h5 class="card-title text-center pb-0 fs-4">Create an Account</h5>
-                                        <p class="text-center small">Enter your personal details to create account</p>
+                                        <h5 class="card-title text-center pb-0 fs-4">Buat Akun</h5>
+                                        <p class="text-center small">Masukkan detail pribadi Anda untuk membuat akun</p>
                                     </div>
 
                                     <form class="row g-3 needs-validation" method="POST"
                                         action="{{ route('register') }}">
                                         @csrf
                                         <div class="col-12">
-                                            <label for="name" class="form-label">{{ __('Name') }}</label>
+                                            <label for="name" class="form-label">{{ __('Nama') }}</label>
 
                                             <input id="name" type="text"
                                                 class="form-control @error('name') is-invalid @enderror" name="name"
@@ -36,7 +36,7 @@
                                         </div>
 
                                         <div class="col-12">
-                                            <label for="email" class="form-label">{{ __('Email Address') }}</label>
+                                            <label for="email" class="form-label">{{ __('Alamat Email') }}</label>
                                             <div class="input-group has-validation">
                                                 <input id="email" type="email"
                                                     class="form-control @error('email') is-invalid @enderror"
@@ -52,7 +52,7 @@
                                         </div>
 
                                         <div class="col-12">
-                                            <label for="password" class="form-label">{{ __('Password') }}</label>
+                                            <label for="password" class="form-label">{{ __('Kata Sandi') }}</label>
                                             <input id="password" type="password"
                                                 class="form-control @error('password') is-invalid @enderror"
                                                 name="password" required autocomplete="new-password">
@@ -66,7 +66,7 @@
 
                                         <div class="col-12">
                                             <label for="password-confirm"
-                                                class="form-label">{{ __('Confirm Password') }}</label>
+                                                class="form-label">{{ __('Kata Sandi') }}</label>
                                             <input id="password-confirm" type="password" class="form-control"
                                                 name="password_confirmation" required autocomplete="new-password">
                                         </div>
@@ -77,13 +77,13 @@
                                                     id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                                 <label class="form-check-label" for="remember">
-                                                    {{ __('Remember Me') }}
+                                                    {{ __('Ingat Saya') }}
                                                 </label>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <button class="btn btn-primary w-100"
-                                                type="submit">{{ __('Register') }}</button>
+                                                type="submit">{{ __('Daftar') }}</button>
                                         </div>
                                     </form>
 

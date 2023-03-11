@@ -18,10 +18,10 @@ class UserSeeder extends Seeder
         \App\Models\User::create([
             'name' => 'Beni',
             'email' => 'beninf10@gmail.com',
-            'password' => Hash::make('a'),
+            'password' => Hash::make('aaa'),
             'picture' => null,
             'role' => 'admin',
-            'isActive' => true,
+            'is_active' => true,
             'email_verified_at' => now(),
             'created_at' => now(),
             'updated_at' => now(),

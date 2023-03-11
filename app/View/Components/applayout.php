@@ -17,7 +17,7 @@ class applayout extends Component
     public function __construct($title = null, $route = [])
     {
         $this->title = $title;
-        $this->route = ['Login', 'Register', 'Verify Email', 'Confirm Password', 'Reset Password', 'Email'];
+        $this->route = ['Masuk', 'Daftar', 'Verifikasi Email', 'Konfirmasi Kata Sandi', 'Atur Ulang Kata Sandi', 'Email', 'Aktivasi Akun'];
     }
 
     /**

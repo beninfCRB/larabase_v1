@@ -69,15 +69,16 @@
                         <div class="form-group col-12">
                             <div class="form-check">
                                 <input
-                                    class="form-check-input @error('isActive')
+                                    class="form-check-input @error('is_active')
                                     is-invalid
                                     @enderror"
-                                    type="checkbox" name="isActive" id="isActive" value="1">
-                                <label class="form-check-label" for="isActive">
+                                    type="checkbox" name="is_active" id="is_active" value="1"
+                                    @if ($data->is_active) checked @endif>
+                                <label class="form-check-label" for="is_active">
                                     Aktivasi Akun
                                 </label>
                             </div>
-                            @error('isActive')
+                            @error('is_active')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>

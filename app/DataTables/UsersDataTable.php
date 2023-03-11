@@ -26,8 +26,11 @@ class UsersDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->editColumn('isActive', function ($row) {
-                return $row->isActive == true ? 'Ya' : 'Tidak';
+            ->editColumn('email_verified_at', function ($row) {
+                return $row->email_verified_at != null ? 'Ya' : 'Tidak';
+            })
+            ->editColumn('is_active', function ($row) {
+                return $row->is_active == 1 ? 'Ya' : 'Tidak';
             })
             ->editColumn('created_at', function ($row) {
                 return date_format($row->created_at, $this->format_date);
@@ -93,7 +96,8 @@ class UsersDataTable extends DataTable
             Column::make('email'),
             Column::make('picture')->title('Avatar'),
             Column::make('role'),
-            Column::make('isActive')->title('Aktivasi'),
+            Column::make('email_verified_at')->title('Verifikasi email'),
+            Column::make('is_active')->title('Aktivasi'),
             Column::make('created_at')->title('Tanggal Dibuat'),
             Column::make('updated_at')->title('Tanggal Diubah'),
             Column::computed('action')

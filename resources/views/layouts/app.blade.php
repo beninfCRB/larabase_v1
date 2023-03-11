@@ -65,7 +65,6 @@
                 <i class="fas fa-angle-up"></i>
             </a>
 
-            @include('auth.logout')
 
             <!-- Bootstrap core JavaScript-->
             <script src="{{ asset('assets/vendor/jquery/jquery.min.js') }}"></script>
