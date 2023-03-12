@@ -3,7 +3,7 @@
         <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-md-8">
+                    <div class="col-md-4">
                         <div class="card">
                             <div class="card-body">
                                 <div class="mx-auto text-center mb-4">{{ __('Atur Ulang Kata Sandi') }}</div>

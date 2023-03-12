@@ -34,7 +34,7 @@ class UserController extends Controller
         return $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'max:255'],
-            'password' => ['required', 'string', 'min:3', 'confirmed'],
+            'password' => ['required', 'string', 'min:8', 'confirmed', Rules\Password::defaults()],
             'role' => ['required', 'string'],
             'is_active' => ['sometimes', 'boolean']
         ]);

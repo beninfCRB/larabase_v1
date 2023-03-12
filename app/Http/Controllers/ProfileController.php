@@ -43,8 +43,8 @@ class ProfileController extends Controller
     {
         $validate = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'password_old' => ['nullable', 'string', 'min:3'],
-            'password' => ['nullable', 'string', 'min:3', 'confirmed'],
+            'password_old' => ['nullable', 'string', 'min:8'],
+            'password' => ['nullable', 'string', 'min:8', 'confirmed'],
             'picture'     => 'nullable', 'image', 'mimes:png,jpg,jpeg'
         ]);
 
