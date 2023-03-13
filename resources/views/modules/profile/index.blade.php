@@ -3,8 +3,7 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">{{ $title }}</h1>
-
+        <h1 class="h3 mb-2 text-gray-800 font-weight-bold">{{ $title }}</h1>
         <div class="card col-md-12 shadow-lg">
             <h1 class="mx-auto mt-4">{{ $method }}</h1>
             <div class="card-body col-md-6 border rounded mx-auto p-4 m-4 shadow-lg">
