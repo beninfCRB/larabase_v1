@@ -91,6 +91,12 @@
             <script src="{{ asset('assets/js/demo/datatables-demo.js') }}"></script>
         </div>
     </div>
+    <script>
+        function toUp() {
+            var x = document.getElementById("code");
+            x.value = x.value.toUpperCase();
+        }
+    </script>
     @include('sweetalert::alert')
     @stack('scripts')
 </body>

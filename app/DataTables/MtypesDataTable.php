@@ -2,11 +2,9 @@
 
 namespace App\DataTables;
 
-use App\Models\User;
-use App\View\Components\ActionButton;
+use App\Models\Mtype;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
-use Yajra\DataTables\Facades\DataTables;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
@@ -14,7 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class UsersDataTable extends DataTable
+class MtypesDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -27,12 +25,6 @@ class UsersDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addIndexColumn()
-            ->editColumn('email_verified_at', function ($row) {
-                return $row->email_verified_at != null ? 'Ya' : 'Tidak';
-            })
-            ->editColumn('is_active', function ($row) {
-                return $row->is_active == 1 ? 'Ya' : 'Tidak';
-            })
             ->editColumn('created_at', function ($row) {
                 return date_format($row->created_at, $this->format_date);
             })
@@ -40,7 +32,7 @@ class UsersDataTable extends DataTable
                 return date_format($row->updated_at, $this->format_date);
             })
             ->addColumn('action', function ($row) {
-                return view("modules.user.action", ['data' => $row->id]);
+                return view("modules.master.type.action", ['data' => $row->id]);
             })
             ->rawColumns(['action'])
             ->setRowId('id');
@@ -49,12 +41,12 @@ class UsersDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\User $model
+     * @param \App\Models\Mjeni $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(User $model): QueryBuilder
+    public function query(Mtype $model): QueryBuilder
     {
-        return $model->newQuery()->where('email', '!=', auth()->user()->email);
+        return $model->newQuery();
     }
 
     /**
@@ -65,17 +57,15 @@ class UsersDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('users-table')
+            ->setTableId('mtypes-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-            // ->dom('Bfrtip')
+            //->dom('Bfrtip')
             ->orderBy(1)
             ->selectStyleSingle()
             ->parameters([
                 'responsive' => true,
-                'autoWidth' => false,
-                'serverSide' => true,
-                'processing' => true
+                'autoWidth' => false
             ])
             ->buttons([
                 Button::make('excel'),
@@ -96,12 +86,8 @@ class UsersDataTable extends DataTable
     {
         return [
             Column::make('DT_RowIndex')->title('No'),
-            Column::make('name')->title('Nama Akun'),
-            Column::make('email'),
-            Column::make('picture')->title('Avatar'),
-            Column::make('role'),
-            Column::make('email_verified_at')->title('Verifikasi email'),
-            Column::make('is_active')->title('Aktivasi'),
+            Column::make('code')->title('Kode'),
+            Column::make('name')->title('Nama'),
             Column::make('created_at')->title('Tanggal Dibuat'),
             Column::make('updated_at')->title('Tanggal Diubah'),
             Column::computed('action')
@@ -119,6 +105,6 @@ class UsersDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return auth()->user()->name . '_' . date('YmdHis');
+        return auth()->user()->name . '_jenis_' . date('YmdHis');
     }
 }
