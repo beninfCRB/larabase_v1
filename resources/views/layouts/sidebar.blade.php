@@ -1,4 +1,8 @@
         <!-- Sidebar -->
+        {{-- @php
+            if
+        @endphp --}}
+
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
@@ -29,17 +33,18 @@
                 </div>
 
                 <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
+                <li class="nav-item {{ strstr($title, 'Master') ? 'active' : '' }}">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMaster"
                         aria-expanded="true" aria-controls="collapseMaster">
-                        <i class="fas fa-fw fa-cog"></i>
+                        <i class="fas fa-database"></i>
                         <span>Master</span>
                     </a>
-                    <div id="collapseMaster" class="collapse" aria-labelledby="headingTwo"
-                        data-parent="#collapseMaster">
+                    <div id="collapseMaster" class="collapse {{ strstr($title, 'Master') ? 'show' : '' }}"
+                        aria-labelledby="headingTwo" data-parent="#collapseMaster">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Data Master</h6>
-                            <a class="collapse-item" href="{{ route('types.index') }}">Jenis</a>
+                            <a class="collapse-item {{ strstr($title, 'Master Jenis') ? 'active' : '' }}"
+                                href="{{ route('types.index') }}">Jenis</a>
                         </div>
                     </div>
                 </li>
