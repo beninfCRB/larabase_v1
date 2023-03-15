@@ -24,7 +24,6 @@ class MtypesDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addIndexColumn()
             ->editColumn('created_at', function ($row) {
                 return date_format($row->created_at, $this->format_date);
             })
@@ -65,7 +64,10 @@ class MtypesDataTable extends DataTable
             ->selectStyleSingle()
             ->parameters([
                 'responsive' => true,
-                'autoWidth' => false
+                'autoWidth' => false,
+                'columnDefs' => [
+                    ['targets' => [0], 'visible' => true, 'searchable' => false, 'orderable' => false]
+                ]
             ])
             ->buttons([
                 Button::make('excel'),
@@ -85,7 +87,6 @@ class MtypesDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('DT_RowIndex')->title('No'),
             Column::make('code')->title('Kode'),
             Column::make('name')->title('Nama'),
             Column::make('created_at')->title('Tanggal Dibuat'),

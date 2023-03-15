@@ -26,7 +26,6 @@ class UsersDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addIndexColumn()
             ->editColumn('email_verified_at', function ($row) {
                 return $row->email_verified_at != null ? 'Ya' : 'Tidak';
             })
@@ -95,7 +94,6 @@ class UsersDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('DT_RowIndex')->title('No'),
             Column::make('name')->title('Nama Akun'),
             Column::make('email'),
             Column::make('picture')->title('Avatar'),
