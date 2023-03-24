@@ -29,7 +29,8 @@ class ProfileController extends Controller
         $title = $this->title;
         $data = User::find(auth()->user()->id);
         $method = 'Akun Saya';
-        return view('modules.profile.index', compact('title', 'method', 'data'));
+        $breadcumb = ['profile', $method];
+        return view('modules.profile.index', compact('title', 'method', 'data', 'breadcumb'));
     }
 
     /**

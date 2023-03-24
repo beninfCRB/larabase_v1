@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\UsersDataTable;
-use App\Models\User;
+use App\DataTables\MtypesDataTable;
+use App\Models\Mtype;
 use App\Traits\UseMessage;
-use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rules;
-use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
+class MtypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +15,8 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     use UseMessage;
-    use RegistersUsers;
-    protected $title = 'Kelola Akun';
-    protected $route = 'users';
+    protected $title = 'Master Jenis';
+    protected $route = 'types';
 
     public function __construct()
     {
@@ -30,20 +26,18 @@ class UserController extends Controller
     public function validation(Request $request)
     {
         return $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'max:255'],
-            'password' => ['required', 'string', 'min:8', 'confirmed', Rules\Password::defaults()],
-            'role' => ['required', 'string'],
-            'is_active' => ['sometimes', 'boolean']
+            'code' => ['required', 'string', 'max:10'],
+            'name' => ['required', 'string', 'max:255']
         ]);
     }
 
-    public function index(UsersDataTable $dataTable)
+
+    public function index(MtypesDataTable $dataTable)
     {
         $title = $this->title;
-        $method = 'Data Semua Akun';
-        $breadcumb = ['users', $method];
-        return $dataTable->render('modules.user.index', compact('title', 'method', 'breadcumb'));
+        $method = 'Data Semua Jenis';
+        $breadcumb = ['types', $method];
+        return $dataTable->render('modules.master.type.index', compact('title', 'method', 'breadcumb'));
     }
 
     /**
@@ -54,9 +48,9 @@ class UserController extends Controller
     public function create()
     {
         $title = $this->title;
-        $method = 'Buat Akun Baru';
-        $breadcumb = ['users', $method];
-        return View('modules.user.create', compact('title', 'method', 'breadcumb'));
+        $method = 'Buat Jenis Baru';
+        $breadcumb = ['types', $method];
+        return View('modules.master.type.create', compact('title', 'method', 'breadcumb'));
     }
 
     /**
@@ -70,12 +64,9 @@ class UserController extends Controller
         $this->validation($request);
 
         try {
-            User::create([
+            Mtype::create([
+                'code' => $request->code,
                 'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'role' => $request->role,
-                'is_active' => $request->has('is_active') == "1" ? "1" : "0"
             ]);
 
             return redirect()->route($this->route . '.index')->with('success', 'Data berhasil ditambahkan');
@@ -104,10 +95,10 @@ class UserController extends Controller
     public function edit($id)
     {
         $title = $this->title;
-        $method = 'Ubah Akun';
-        $breadcumb = ['users', $method];
-        $data = User::find($id);
-        return View('modules.user.update', compact('title', 'data', 'method', 'breadcumb'));
+        $method = 'Ubah Jenis';
+        $breadcumb = ['types', $method];
+        $data = Mtype::find($id);
+        return View('modules.master.type.update', compact('title', 'data', 'method', 'breadcumb'));
     }
 
     /**
@@ -122,13 +113,10 @@ class UserController extends Controller
         $this->validation($request);
 
         try {
-            $user = User::find($id);
+            $user = Mtype::find($id);
             $user->update([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => $request->password,
-                'role' => $request->role,
-                'is_active' => $request->has('is_active') == "1" ? "1" : "0"
+                'code' => $request->code,
+                'name' => $request->name
             ]);
             return redirect()->route($this->route . '.index')->with('success', 'Data berhasil diubah');
         } catch (\Exception $e) {
@@ -144,7 +132,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::find($id);
+        $user = Mtype::find($id);
         $user->delete();
 
         return redirect()->route($this->route . '.index')->with('success', 'Data Berhasil Dihapus');

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MtypeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -28,14 +29,12 @@ Route::get('/activation', function () {
 });
 
 Route::middleware(['auth', 'verified', 'isActive'])->group(function () {
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('home', [HomeController::class, 'index'])->name('home');
     Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::put('profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
 
     Route::middleware('Role:admin')->group(function () {
         Route::resource('users', UserController::class);
-    });
-    Route::middleware('Role:user')->group(function () {
-        //route
+        Route::resource('types', MtypeController::class);
     });
 });
