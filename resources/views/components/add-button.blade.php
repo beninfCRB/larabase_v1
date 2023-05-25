@@ -1,5 +1,5 @@
 <div class="text-right m-4">
-    <a href="{{ route($module . '.create') }}" class="btn btn-success btn-sm btn-rounded"><i
+    <button class="btn btn-success btn-sm btn-rounded" data-toggle="modal" data-target="#add"><i
             class="fas fa-plus-circle"></i>
-        {{ __('Tambah') }}</a>
+        {{ __('Tambah') }}</button>
 </div>

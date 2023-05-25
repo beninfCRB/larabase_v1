@@ -8,5 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Mtype extends Model
 {
     use HasFactory;
-    protected $fillable = ['code', 'name'];
+    protected $fillable = ['id', 'code', 'name'];
+
+    public function samples()
+    {
+        return $this->hasMany(Msample::class, 'fk_samples');
+    }
 }
