@@ -45,6 +45,8 @@
                             <h6 class="collapse-header">Data Master</h6>
                             <a class="collapse-item {{ strstr($title, 'Master Jenis') ? 'active' : '' }}"
                                 href="{{ route('types.index') }}">Jenis</a>
+                            <a class="collapse-item {{ strstr($title, 'Master Sample') ? 'active' : '' }}"
+                                href="{{ route('samples.index') }}">Sample</a>
                         </div>
                     </div>
                 </li>

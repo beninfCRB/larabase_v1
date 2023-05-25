@@ -43,7 +43,8 @@ class UserController extends Controller
         $title = $this->title;
         $method = 'Data Semua Akun';
         $breadcumb = ['users', $method];
-        return $dataTable->render('modules.user.index', compact('title', 'method', 'breadcumb'));
+        $data = User::all();
+        return $dataTable->render('modules.user.index', compact('title', 'method', 'breadcumb', 'data'));
     }
 
     /**
@@ -53,10 +54,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $title = $this->title;
-        $method = 'Buat Akun Baru';
-        $breadcumb = ['users', $method];
-        return View('modules.user.create', compact('title', 'method', 'breadcumb'));
+        //
     }
 
     /**
@@ -103,11 +101,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $title = $this->title;
-        $method = 'Ubah Akun';
-        $breadcumb = ['users', $method];
-        $data = User::find($id);
-        return View('modules.user.update', compact('title', 'data', 'method', 'breadcumb'));
+        //
     }
 
     /**

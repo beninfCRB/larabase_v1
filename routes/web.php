@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MsampleController;
 use App\Http\Controllers\MtypeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -36,5 +37,10 @@ Route::middleware(['auth', 'verified', 'isActive'])->group(function () {
     Route::middleware('Role:admin')->group(function () {
         Route::resource('users', UserController::class);
         Route::resource('types', MtypeController::class);
+        Route::resource('samples', MsampleController::class);
+        Route::get('import/samples', [MsampleController::class, 'show_import']);
+        Route::post('import/samples/create', [MsampleController::class, 'import']);
+        Route::get('import/types', [MtypeController::class, 'show_import']);
+        Route::post('import/types/create', [MtypeController::class, 'import']);
     });
 });

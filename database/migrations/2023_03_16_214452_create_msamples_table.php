@@ -13,10 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('mtypes', function (Blueprint $table) {
+        Schema::create('msamples', function (Blueprint $table) {
             $table->id();
             $table->string('code')->unique();
-            $table->string('name');
+            $table->double('value');
+            $table->unsignedBigInteger('type_id');
+            $table->foreign('type_id')->references('id')->on('mtypes')->onDelete('restrict');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mtypes');
+        Schema::dropIfExists('msamples');
     }
 };

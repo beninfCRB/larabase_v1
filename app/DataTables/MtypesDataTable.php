@@ -59,15 +59,12 @@ class MtypesDataTable extends DataTable
             ->setTableId('mtypes-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-            //->dom('Bfrtip')
+            // ->dom('Bfrtip')
             ->orderBy(1)
             ->selectStyleSingle()
             ->parameters([
                 'responsive' => true,
-                'autoWidth' => false,
-                'columnDefs' => [
-                    ['targets' => [0], 'visible' => true, 'searchable' => false, 'orderable' => false]
-                ]
+                'autoWidth' => false
             ])
             ->buttons([
                 Button::make('excel'),

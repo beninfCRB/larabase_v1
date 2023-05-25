@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class ModalDelete extends Component
+class CreateButton extends Component
 {
     /**
      * Create a new component instance.
@@ -23,6 +23,6 @@ class ModalDelete extends Component
      */
     public function render()
     {
-        return view('components.modal-delete');
+        return view('components.create-button');
     }
 }
