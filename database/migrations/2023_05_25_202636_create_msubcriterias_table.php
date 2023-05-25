@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('mcriterias', function (Blueprint $table) {
+        Schema::create('msubcriterias', function (Blueprint $table) {
             $table->id();
             $table->string('code')->unique();
             $table->string('name');
             $table->float('value');
-            $table->unsignedBigInteger('type_id');
-            $table->foreign('type_id')->references('id')->on('mtypes')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('criteria_id');
+            $table->foreign('criteria_id')->references('id')->on('mcriterias')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mcriterias');
+        Schema::dropIfExists('msubcriterias');
     }
 };

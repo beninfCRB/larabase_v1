@@ -11,8 +11,13 @@
             <div class="card-body col-md-6 border rounded mx-auto p-4 m-4 shadow-lg">
                 <x-BackButton module="users" />
                 <div class="mx-auto text-center">
-                    <img class="img-profile rounded-circle" src="{{ asset('storage/' . $data->picture) }}" alt=""
-                        width="80px" height="auto">
+                    @if (auth()->user()->picture)
+                        <img class="img-profile rounded-circle" src="{{ asset('storage/' . $data->picture) }}"
+                            alt="" width="80px" height="auto">
+                    @else
+                        <img class="img-profile rounded-circle" src="{{ asset('storage/avatar/undraw_profile.svg') }}"
+                            alt="" width="80px" height="auto">
+                    @endif
                 </div>
                 <form action="{{ route('profile.update', auth()->user()->id) }}" method="POST"
                     enctype="multipart/form-data">

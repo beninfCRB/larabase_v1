@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\McriteriaDataTable;
-use App\Imports\McriteriaImport;
+use App\DataTables\MsubcriteriaDataTable;
+use App\Imports\MsubcriteriaImport;
 use App\Models\Mcriteria;
-use App\Models\Mtype;
+use App\Models\Msubcriteria;
 use App\Traits\UseMessage;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
-class McriteriaController extends Controller
+class MsubcriteriaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +18,8 @@ class McriteriaController extends Controller
      * @return \Illuminate\Http\Response
      */
     use UseMessage;
-    protected $title = 'Master Kriteria';
-    protected $route = 'criterias';
+    protected $title = 'Master Sub-Kriteria';
+    protected $route = 'subcriterias';
 
     public function __construct()
     {
@@ -32,18 +32,18 @@ class McriteriaController extends Controller
             'code' => ['required', 'string', 'max:10'],
             'name' => ['required', 'string', 'max:25'],
             'value' => ['required', 'string', 'max:10'],
-            'type_id' => ['required', 'integer']
+            'criteria_id' => ['required', 'integer']
         ]);
     }
 
-    public function index(McriteriaDataTable $dataTable)
+    public function index(MsubcriteriaDataTable $dataTable)
     {
         $title = $this->title;
-        $method = 'Data Semua Kriteria';
+        $method = 'Data Semua Sub-Kriteria';
         $breadcumb = [$this->route, $method];
-        $data = Mcriteria::all();
-        $type = Mtype::all();
-        return $dataTable->render('modules.master.' . $this->route . '.index', compact('title', 'method', 'breadcumb', 'data', 'type'));
+        $data = Msubcriteria::all();
+        $criteria = Mcriteria::all();
+        return $dataTable->render('modules.master.' . $this->route . '.index', compact('title', 'method', 'breadcumb', 'data', 'criteria'));
     }
 
 
@@ -68,11 +68,11 @@ class McriteriaController extends Controller
         $this->validation($request);
 
         try {
-            Mcriteria::create([
+            Msubcriteria::create([
                 'code' => $request->code,
                 'name' => $request->name,
                 'value' => $request->value,
-                'type_id' => $request->type_id
+                'criteria_id' => $request->criteria_id
             ]);
 
             return redirect()->route($this->route . '.index')->with('success', 'Data berhasil ditambahkan');
@@ -115,13 +115,13 @@ class McriteriaController extends Controller
         $this->validation($request);
 
         try {
-            $user = Mcriteria::find($id);
+            $user = Msubcriteria::find($id);
 
             $user->update([
                 'code' => $request->code,
                 'name' => $request->name,
                 'value' => $request->value,
-                'type_id' => $request->type_id
+                'criteria_id' => $request->criteria_id
             ]);
             return redirect()->route($this->route . '.index')->with('success', 'Data berhasil diubah');
         } catch (\Exception $e) {
@@ -137,7 +137,7 @@ class McriteriaController extends Controller
      */
     public function destroy($id)
     {
-        $user = Mcriteria::find($id);
+        $user = Msubcriteria::find($id);
         $user->delete();
 
         return redirect()->route($this->route . '.index')->with('success', 'Data Berhasil Dihapus');
@@ -146,7 +146,7 @@ class McriteriaController extends Controller
     public function show_import()
     {
         $title = $this->title;
-        $method = 'Import Data Kriteria';
+        $method = 'Import Data Sub-Kriteria';
         $breadcumb = [$this->route, $method];
         return View('modules.master.' . $this->route . '.import', compact('title', 'method', 'breadcumb'));
     }
@@ -154,7 +154,7 @@ class McriteriaController extends Controller
     public function import()
     {
         try {
-            Excel::import(new McriteriaImport, request()->file('import'));
+            Excel::import(new MsubcriteriaImport, request()->file('import'));
             return redirect()->route($this->route . '.index')->with('success', 'Data berhasil diimport');
         } catch (\Throwable $th) {
             return redirect()->route($this->route . '.index')->with('error', 'Data gagal diimport');

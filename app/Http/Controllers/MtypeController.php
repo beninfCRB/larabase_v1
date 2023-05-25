@@ -38,9 +38,9 @@ class MtypeController extends Controller
     {
         $title = $this->title;
         $method = 'Data Semua Jenis';
-        $breadcumb = ['types', $method];
+        $breadcumb = [$this->route, $method];
         $data = Mtype::all();
-        return $dataTable->render('modules.master.type.index', compact('title', 'method', 'breadcumb', 'data'));
+        return $dataTable->render('modules.master.' . $this->route . '.index', compact('title', 'method', 'breadcumb', 'data'));
     }
 
     /**
@@ -138,8 +138,8 @@ class MtypeController extends Controller
     {
         $title = $this->title;
         $method = 'Import Data Jenis';
-        $breadcumb = ['types', $method];
-        return View('modules.master.type.import', compact('title', 'method', 'breadcumb'));
+        $breadcumb = [$this->route, $method];
+        return View('modules.master.' . $this->route . '.import', compact('title', 'method', 'breadcumb'));
     }
 
     public function import()

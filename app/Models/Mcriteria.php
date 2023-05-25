@@ -14,4 +14,9 @@ class Mcriteria extends Model
     {
         return $this->belongsTo(Mtype::class);
     }
+
+    public function subcriteria()
+    {
+        return $this->hasMany(Msubcriteria::class, 'fk_subcriteria');
+    }
 }

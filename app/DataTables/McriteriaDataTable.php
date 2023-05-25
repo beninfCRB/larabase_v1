@@ -32,7 +32,7 @@ class McriteriaDataTable extends DataTable
                 return date_format($row->updated_at, $this->format_date);
             })
             ->addColumn('action', function ($row) {
-                return view("modules.master.criteria.action", ['data' => $row->id]);
+                return view("modules.master.criterias.action", ['data' => $row->id]);
             })
             ->rawColumns(['action'])
             ->setRowId('id');

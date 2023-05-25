@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\McriteriaController;
+use App\Http\Controllers\MsubcriteriaController;
 use App\Http\Controllers\MtypeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -38,6 +39,9 @@ Route::middleware(['auth', 'verified', 'isActive'])->group(function () {
         Route::resource('users', UserController::class);
         Route::resource('types', MtypeController::class);
         Route::resource('criterias', McriteriaController::class);
+        Route::resource('subcriterias', MsubcriteriaController::class);
+        Route::get('import/subcriterias', [MsubcriteriaController::class, 'show_import']);
+        Route::post('import/subcriterias/create', [MsubcriteriaController::class, 'import']);
         Route::get('import/criterias', [McriteriaController::class, 'show_import']);
         Route::post('import/criterias/create', [McriteriaController::class, 'import']);
         Route::get('import/types', [MtypeController::class, 'show_import']);

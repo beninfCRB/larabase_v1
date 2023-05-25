@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Mtype extends Model
+class Msubcriteria extends Model
 {
     use HasFactory;
-    protected $fillable = ['id', 'code', 'name'];
+    protected $fillable = ['code', 'name', 'value', 'criteria_id'];
 
     public function criteria()
     {
-        return $this->hasMany(Mcriteria::class, 'fk_criterias');
+        return $this->belongsTo(Mcriteria::class);
     }
 }
