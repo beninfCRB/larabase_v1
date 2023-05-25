@@ -2,10 +2,10 @@
 
 namespace App\Imports;
 
-use App\Models\Msample;
+use App\Models\Mcriteria;
 use Maatwebsite\Excel\Concerns\ToModel;
 
-class MsampleImport implements ToModel
+class McriteriaImport implements ToModel
 {
     /**
      * @param array $row
@@ -14,10 +14,11 @@ class MsampleImport implements ToModel
      */
     public function model(array $row)
     {
-        return new Msample([
+        return new Mcriteria([
             'code' => $row[0],
-            'value' => $row[1],
-            'type_id' => $row[2]
+            'name' => $row[1],
+            'value' => $row[2],
+            'type_id' => $row[3]
         ]);
     }
 }

@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\MsampleDataTable;
-use App\Imports\MsampleImport;
-use App\Models\Msample;
+use App\DataTables\McriteriaDataTable;
+use App\Imports\McriteriaImport;
+use App\Models\Mcriteria;
 use App\Models\Mtype;
 use App\Traits\UseMessage;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
-class MsampleController extends Controller
+class McriteriaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +18,8 @@ class MsampleController extends Controller
      * @return \Illuminate\Http\Response
      */
     use UseMessage;
-    protected $title = 'Master Sample';
-    protected $route = 'samples';
+    protected $title = 'Master Kriteria';
+    protected $route = 'criterias';
 
     public function __construct()
     {
@@ -30,19 +30,20 @@ class MsampleController extends Controller
     {
         return $request->validate([
             'code' => ['required', 'string', 'max:10'],
+            'name' => ['required', 'string', 'max:25'],
             'value' => ['required', 'string', 'max:10'],
             'type_id' => ['required', 'integer']
         ]);
     }
 
-    public function index(MsampleDataTable $dataTable)
+    public function index(McriteriaDataTable $dataTable)
     {
         $title = $this->title;
-        $method = 'Data Semua Sample';
-        $breadcumb = ['samples', $method];
-        $data = Msample::all();
+        $method = 'Data Semua Kriteria';
+        $breadcumb = ['criterias', $method];
+        $data = Mcriteria::all();
         $type = Mtype::all();
-        return $dataTable->render('modules.master.sample.index', compact('title', 'method', 'breadcumb', 'data', 'type'));
+        return $dataTable->render('modules.master.criteria.index', compact('title', 'method', 'breadcumb', 'data', 'type'));
     }
 
 
@@ -67,8 +68,9 @@ class MsampleController extends Controller
         $this->validation($request);
 
         try {
-            Msample::create([
+            Mcriteria::create([
                 'code' => $request->code,
+                'name' => $request->name,
                 'value' => $request->value,
                 'type_id' => $request->type_id
             ]);
@@ -113,10 +115,11 @@ class MsampleController extends Controller
         $this->validation($request);
 
         try {
-            $user = Msample::find($id);
+            $user = Mcriteria::find($id);
 
             $user->update([
                 'code' => $request->code,
+                'name' => $request->name,
                 'value' => $request->value,
                 'type_id' => $request->type_id
             ]);
@@ -134,7 +137,7 @@ class MsampleController extends Controller
      */
     public function destroy($id)
     {
-        $user = Msample::find($id);
+        $user = Mcriteria::find($id);
         $user->delete();
 
         return redirect()->route($this->route . '.index')->with('success', 'Data Berhasil Dihapus');
@@ -143,15 +146,15 @@ class MsampleController extends Controller
     public function show_import()
     {
         $title = $this->title;
-        $method = 'Import Data Sample';
-        $breadcumb = ['samples', $method];
-        return View('modules.master.sample.import', compact('title', 'method', 'breadcumb'));
+        $method = 'Import Data Kriteria';
+        $breadcumb = ['criterias', $method];
+        return View('modules.master.criteria.import', compact('title', 'method', 'breadcumb'));
     }
 
     public function import()
     {
         try {
-            Excel::import(new MsampleImport, request()->file('import'));
+            Excel::import(new McriteriaImport, request()->file('import'));
             return redirect()->route($this->route . '.index')->with('success', 'Data berhasil diimport');
         } catch (\Throwable $th) {
             return redirect()->route($this->route . '.index')->with('error', 'Data gagal diimport');

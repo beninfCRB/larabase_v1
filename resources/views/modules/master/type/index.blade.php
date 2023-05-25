@@ -95,7 +95,7 @@
 
                         <div class="row">
                             <div class="form-group col-12">
-                                <label for="">Kode Jenis</label>
+                                <label for="">Kode</label>
                                 <input id="code" type="code"
                                     class="form-control @error('code')
                             is-invalid
@@ -109,7 +109,7 @@
 
                         <div class="row">
                             <div class="form-group col-12">
-                                <label for="">Nama Lengkap</label>
+                                <label for="">Nama</label>
                                 <input id="name" type="text"
                                     class="form-control @error('name')
                             is-invalid

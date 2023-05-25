@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('msamples', function (Blueprint $table) {
+        Schema::create('mcriterias', function (Blueprint $table) {
             $table->id();
             $table->string('code')->unique();
-            $table->double('value');
+            $table->string('name');
+            $table->float('value');
             $table->unsignedBigInteger('type_id');
             $table->foreign('type_id')->references('id')->on('mtypes')->onDelete('restrict');
             $table->timestamps();
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('msamples');
+        Schema::dropIfExists('mcriterias');
     }
 };

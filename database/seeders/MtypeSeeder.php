@@ -17,28 +17,16 @@ class MtypeSeeder extends Seeder
         $data = [
             [
                 'code' => 'J1',
-                'name' => 'Investasi',
+                'name' => 'Cost',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'code' => 'J2',
-                'name' => 'Jumlah Tenaga Kerja',
+                'name' => 'Benefit',
                 'created_at' => now(),
                 'updated_at' => now(),
-            ],
-            [
-                'code' => 'J3',
-                'name' => 'Cabang Produksi',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'code' => 'J4',
-                'name' => 'Jumlah Produksi',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
+            ]
         ];
 
         foreach ($data as $v) {

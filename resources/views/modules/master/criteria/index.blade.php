@@ -57,6 +57,20 @@
 
                     <div class="row">
                         <div class="form-group col-12">
+                            <label for="">Nama</label>
+                            <input id="name" type="text"
+                                class="form-control @error('name')
+                            is-invalid
+                        @enderror"
+                                name="name">
+                            @error('name')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-12">
                             <label for="">Nilai</label>
                             <input id="value" type="text"
                                 class="form-control @error('value')
@@ -98,13 +112,27 @@
                         @method('PUT')
                         <div class="row">
                             <div class="form-group col-12">
-                                <label for="">Kode Jenis</label>
+                                <label for="">Kode</label>
                                 <input id="code" type="code"
                                     class="form-control @error('code')
                                 is-invalid
                                 @enderror"
                                     name="code" value="{{ $value->code }}">
                                 @error('code')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-12">
+                                <label for="">Nama</label>
+                                <input id="name" type="text"
+                                    class="form-control @error('name')
+                                is-invalid
+                            @enderror"
+                                    name="name" value="{{ $value->name }}">
+                                @error('name')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>

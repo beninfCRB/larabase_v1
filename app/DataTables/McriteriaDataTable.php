@@ -2,17 +2,15 @@
 
 namespace App\DataTables;
 
-use App\Models\Msample;
+use App\Models\Mcriteria;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class MsampleDataTable extends DataTable
+class McriteriaDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -34,7 +32,7 @@ class MsampleDataTable extends DataTable
                 return date_format($row->updated_at, $this->format_date);
             })
             ->addColumn('action', function ($row) {
-                return view("modules.master.sample.action", ['data' => $row->id]);
+                return view("modules.master.criteria.action", ['data' => $row->id]);
             })
             ->rawColumns(['action'])
             ->setRowId('id');
@@ -46,7 +44,7 @@ class MsampleDataTable extends DataTable
      * @param \App\Models\Msample $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Msample $model): QueryBuilder
+    public function query(Mcriteria $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -59,7 +57,7 @@ class MsampleDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('msample-table')
+            ->setTableId('mcriteria-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             //->dom('Bfrtip')
@@ -87,8 +85,9 @@ class MsampleDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('code')->title('Kode Sample'),
-            Column::make('value')->title('Nilai Sample'),
+            Column::make('code')->title('Kode Kriteria'),
+            Column::make('name')->title('Nama Kriteria'),
+            Column::make('value')->title('Nilai Kriteria'),
             Column::make('type_id')->title('Jenis'),
             Column::make('created_at')->title('Tanggal Dibuat'),
             Column::make('updated_at')->title('Tanggal Diubah'),
@@ -107,6 +106,6 @@ class MsampleDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return auth()->user()->name . '_sample_' . date('YmdHis');
+        return auth()->user()->name . '_criteria_' . date('YmdHis');
     }
 }
