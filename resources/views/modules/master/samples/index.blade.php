@@ -16,14 +16,10 @@
                 </div>
             </div>
             <div class="card-body">
-                {{ $dataTable->table() }}
+                //
             </div>
         </div>
     </div>
-    <!-- /.container-fluid -->
-    @push('scripts')
-        {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
-    @endpush
 </x-applayout>
 
 {{-- ===================================================Add================================================================ --}}
@@ -42,14 +38,31 @@
                     @csrf
 
                     <div class="row">
+                        <x-Select :label="'Alternatif'" :name="'alternative_id'" :data="$alternative" :method="'add'" />
+                    </div>
+
+                    <div class="row">
                         <div class="form-group col-12">
-                            <label for="">Kode</label>
-                            <input id="code" type="text"
-                                class="form-control @error('code')
-                            is-invalid
-                            @enderror"
-                                name="code" style="text-transform: uppercase" autofocus>
-                            @error('code')
+                            <label for="">Kriteria</label>
+                            <select class="form-control criteria_id" id="criteria_id" name="criteria_id">
+                                <option selected>========Pilih Kriteria========</option>
+                                @foreach ($criteria as $v)
+                                    <option value="{{ $v->id }}">{{ $v->code }} -
+                                        {{ $v->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-12">
+                            <label for="subkriteria">Sub-Kriteria</label>
+                            <select class="form-control" name="subkriteria" id="subkriteria">
+                                <option value="0" disable="true" selected="true">========Nilai========
+                                </option>
+                            </select>
+                            @error('subkriteria')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
@@ -57,13 +70,13 @@
 
                     <div class="row">
                         <div class="form-group col-12">
-                            <label for="">Nama</label>
-                            <input id="name" type="text"
-                                class="form-control @error('name')
+                            <label for="value">Nilai</label>
+                            <input id="value" type="text" value="0" readonly
+                                class="form-control @error('value')
                             is-invalid
                         @enderror"
-                                name="name">
-                            @error('name')
+                                name="value">
+                            @error('value')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>

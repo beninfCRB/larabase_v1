@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(MtypeSeeder::class);
         $this->call(McriteriaSeeder::class);
         $this->call(MsubcriteriaSeeder::class);
+        $this->call(MalternativeSeeder::class);
     }
 }

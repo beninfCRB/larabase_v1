@@ -19,4 +19,9 @@ class Mcriteria extends Model
     {
         return $this->hasMany(Msubcriteria::class, 'fk_subcriteria');
     }
+
+    public function sample_data()
+    {
+        return $this->hasMany(SampleData::class, 'fk_sample_data');
+    }
 }

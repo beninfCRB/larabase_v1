@@ -2,15 +2,17 @@
 
 namespace App\DataTables;
 
-use App\Models\Mcriteria;
+use App\Models\Malternative;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
+use Yajra\DataTables\Html\Editor\Editor;
+use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class McriteriaDataTable extends DataTable
+class MalternativeDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -22,9 +24,6 @@ class McriteriaDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->editColumn('type_id', function ($data) {
-                return $data->type->name;
-            })
             ->editColumn('created_at', function ($row) {
                 return date_format($row->created_at, $this->format_date);
             })
@@ -32,7 +31,7 @@ class McriteriaDataTable extends DataTable
                 return date_format($row->updated_at, $this->format_date);
             })
             ->addColumn('action', function ($row) {
-                return view("modules.master.criterias.action", ['data' => $row->id]);
+                return view("modules.master.alternatives.action", ['data' => $row->id]);
             })
             ->rawColumns(['action'])
             ->setRowId('id');
@@ -41,10 +40,10 @@ class McriteriaDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Msample $model
+     * @param \App\Models\Malternative $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Mcriteria $model): QueryBuilder
+    public function query(Malternative $model): QueryBuilder
     {
         return $model->newQuery()->orderBy('id', 'asc');
     }
@@ -57,7 +56,7 @@ class McriteriaDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('mcriteria-table')
+            ->setTableId('malternative-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             //->dom('Bfrtip')
@@ -85,10 +84,8 @@ class McriteriaDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('code')->title('Kode Kriteria'),
-            Column::make('name')->title('Nama Kriteria'),
-            Column::make('value')->title('Nilai Kriteria'),
-            Column::make('type_id')->title('Jenis'),
+            Column::make('code')->title('Kode Alternatif'),
+            Column::make('name')->title('Nama Alternatif'),
             Column::make('created_at')->title('Tanggal Dibuat'),
             Column::make('updated_at')->title('Tanggal Diubah'),
             Column::computed('action')
@@ -106,6 +103,6 @@ class McriteriaDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return auth()->user()->name . '_criteria_' . date('YmdHis');
+        return auth()->user()->name . '_alternatif_' . date('YmdHis');
     }
 }

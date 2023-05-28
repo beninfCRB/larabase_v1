@@ -2,24 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\McriteriaDataTable;
-use App\Imports\McriteriaImport;
+use App\Imports\SampleDataImport;
+use App\Models\Malternative;
 use App\Models\Mcriteria;
-use App\Models\Mtype;
+use App\Models\SampleData;
+use App\Traits\Mabac;
 use App\Traits\UseMessage;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
-class McriteriaController extends Controller
+class SampleDataController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    use Mabac;
     use UseMessage;
-    protected $title = 'Master Kriteria';
-    protected $route = 'criterias';
+    protected $title = 'Master Data Sample';
+    protected $route = 'samples';
 
     public function __construct()
     {
@@ -29,23 +31,23 @@ class McriteriaController extends Controller
     public function validation(Request $request)
     {
         return $request->validate([
-            'code' => ['required', 'string', 'max:10'],
-            'name' => ['required', 'string', 'max:25'],
-            'value' => ['required', 'string', 'max:10'],
-            'type_id' => ['required', 'integer']
+            'alternative_id' => ['required', 'string', 'max:10'],
+            'criteria_id' => ['required', 'string', 'max:255'],
+            'value' => ['required', 'string', 'max:255']
         ]);
     }
 
-    public function index(McriteriaDataTable $dataTable)
+
+    public function index()
     {
         $title = $this->title;
-        $method = 'Data Semua Kriteria';
+        $method = 'Data Semua Data Sample';
         $breadcumb = [$this->route, $method];
-        $data = Mcriteria::all();
-        $type = Mtype::all();
-        return $dataTable->render('modules.master.' . $this->route . '.index', compact('title', 'method', 'breadcumb', 'data', 'type'));
+        $data = SampleData::all();
+        $alternative = Malternative::all();
+        $criteria = Mcriteria::all();
+        return view('modules.master.' . $this->route . '.index', compact('title', 'method', 'breadcumb', 'data', 'alternative', 'criteria'));
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -68,11 +70,10 @@ class McriteriaController extends Controller
         $this->validation($request);
 
         try {
-            Mcriteria::create([
-                'code' => strtoupper($request->code),
-                'name' => $request->name,
+            SampleData::create([
+                'alternative_id' => $request->alternative_id,
+                'criteria_id' => $request->criteria_id,
                 'value' => $request->value,
-                'type_id' => $request->type_id
             ]);
 
             return redirect()->route($this->route . '.index')->with('success', 'Data berhasil ditambahkan');
@@ -115,13 +116,11 @@ class McriteriaController extends Controller
         $this->validation($request);
 
         try {
-            $user = Mcriteria::find($id);
-
+            $user = SampleData::find($id);
             $user->update([
-                'code' => strtoupper($request->code),
-                'name' => $request->name,
+                'alternative_id' => $request->alternative_id,
+                'criteria_id' => $request->criteria_id,
                 'value' => $request->value,
-                'type_id' => $request->type_id
             ]);
             return redirect()->route($this->route . '.index')->with('success', 'Data berhasil diubah');
         } catch (\Exception $e) {
@@ -137,7 +136,7 @@ class McriteriaController extends Controller
      */
     public function destroy($id)
     {
-        $user = Mcriteria::find($id);
+        $user = SampleData::find($id);
         $user->delete();
 
         return redirect()->route($this->route . '.index')->with('success', 'Data Berhasil Dihapus');
@@ -146,7 +145,7 @@ class McriteriaController extends Controller
     public function show_import()
     {
         $title = $this->title;
-        $method = 'Import Data Kriteria';
+        $method = 'Import Data Sample';
         $breadcumb = [$this->route, $method];
         return View('modules.master.' . $this->route . '.import', compact('title', 'method', 'breadcumb'));
     }
@@ -154,7 +153,7 @@ class McriteriaController extends Controller
     public function import()
     {
         try {
-            Excel::import(new McriteriaImport, request()->file('import'));
+            Excel::import(new SampleDataImport, request()->file('import'));
             return redirect()->route($this->route . '.index')->with('success', 'Data berhasil diimport');
         } catch (\Throwable $th) {
             return redirect()->route($this->route . '.index')->with('error', 'Data gagal diimport');

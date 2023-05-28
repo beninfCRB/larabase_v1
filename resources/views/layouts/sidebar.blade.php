@@ -49,6 +49,8 @@
                                 href="{{ route('criterias.index') }}">Kriteria</a>
                             <a class="collapse-item {{ strstr($title, 'Master Sub-Kriteria') ? 'active' : '' }}"
                                 href="{{ route('subcriterias.index') }}">Sub-Kriteria</a>
+                            <a class="collapse-item {{ strstr($title, 'Master Alternatif') ? 'active' : '' }}"
+                                href="{{ route('alternatives.index') }}">Alternatif</a>
                         </div>
                     </div>
                 </li>

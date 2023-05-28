@@ -45,7 +45,7 @@ class MtypesDataTable extends DataTable
      */
     public function query(Mtype $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->newQuery()->orderBy('id', 'asc');
     }
 
     /**

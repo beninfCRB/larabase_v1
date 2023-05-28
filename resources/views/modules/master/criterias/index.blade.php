@@ -48,7 +48,7 @@
                                 class="form-control @error('code')
                             is-invalid
                             @enderror"
-                                name="code" onkeyup="toUp()" autofocus>
+                                name="code" style="text-transform: uppercase" autofocus>
                             @error('code')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -182,7 +182,7 @@
 
                     <div class="row">
                         <div class="form-group">
-                            <label for="">Avatar</label>
+                            <label for="">File</label>
                             <input type="file"
                                 class="form-control-file @error('import')
                                     is-invalid

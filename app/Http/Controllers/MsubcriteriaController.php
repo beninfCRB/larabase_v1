@@ -69,7 +69,7 @@ class MsubcriteriaController extends Controller
 
         try {
             Msubcriteria::create([
-                'code' => $request->code,
+                'code' => strtoupper($request->code),
                 'name' => $request->name,
                 'value' => $request->value,
                 'criteria_id' => $request->criteria_id
@@ -118,7 +118,7 @@ class MsubcriteriaController extends Controller
             $user = Msubcriteria::find($id);
 
             $user->update([
-                'code' => $request->code,
+                'code' => strtoupper($request->code),
                 'name' => $request->name,
                 'value' => $request->value,
                 'criteria_id' => $request->criteria_id
@@ -159,5 +159,11 @@ class MsubcriteriaController extends Controller
         } catch (\Throwable $th) {
             return redirect()->route($this->route . '.index')->with('error', 'Data gagal diimport');
         }
+    }
+
+    public function get_sub_kriteria()
+    {
+        $data = Msubcriteria::where('criteria_id', '=', request()->get('criteria_id'))->get();
+        return response()->json($data);
     }
 }

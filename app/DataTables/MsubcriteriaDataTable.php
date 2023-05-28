@@ -46,7 +46,7 @@ class MsubcriteriaDataTable extends DataTable
      */
     public function query(Msubcriteria $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->newQuery()->orderBy('id', 'asc');
     }
 
     /**
