@@ -42,7 +42,7 @@ class SampleDataController extends Controller
     {
         // dd($this->new_object());
         $title = $this->title;
-        $method = 'Data Semua Data Sample';
+        $method = 'Data Semua Sample';
         $breadcumb = [$this->route, $method];
         $data = SampleData::all();
         $malternative = Malternative::all();
