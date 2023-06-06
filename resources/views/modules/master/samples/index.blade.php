@@ -16,7 +16,51 @@
                 </div>
             </div>
             <div class="card-body">
-                //
+                <table class="table table-striped table-bordered table-hover">
+                    <thead class="text-center">
+                        <tr>
+                            <th rowspan='3'>No</th>
+                            <th rowspan='3'>Alternatif</th>
+                            <th rowspan='3'>Nama</th>
+                            <th colspan={{ $jml_krt }}>Kriteria</th>
+                            <th rowspan='3'>Action</th>
+                        </tr>
+                        <tr>
+                            @foreach ($n_kriteria as $k)
+                                <th>{{ $k }}</th>
+                            @endforeach
+                        </tr>
+                        <tr>
+                            @foreach ($kriteria as $k)
+                                <th>{{ $k }}</th>
+                            @endforeach
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($nilai as $nama => $krit)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <th>{{ $nama }}</th>
+                                <td>{{ $krit['C1']['nama_alternatif'] }}</td>
+                                @foreach ($kriteria as $k)
+                                    {{-- <td align='center'>{{ $krit[$k]['nilai'] }}</td> --}}
+                                    <td align='center'><a data-toggle="modal"
+                                            data-target="#edit{{ $krit[$k]['id_data'] }}">{{ $krit[$k]['nilai'] }}</a>
+                                    </td>
+                                @endforeach
+                                <td class="text-center">
+                                    <form id="form" action="{{ route($breadcumb[0] . '.destroy', $nama) }}"
+                                        method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-circle btn-sm btn-submit"><i
+                                                class="fas fa-trash"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -38,48 +82,7 @@
                     @csrf
 
                     <div class="row">
-                        <x-Select :label="'Alternatif'" :name="'alternative_id'" :data="$alternative" :method="'add'" />
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group col-12">
-                            <label for="">Kriteria</label>
-                            <select class="form-control criteria_id" id="criteria_id" name="criteria_id">
-                                <option selected>========Pilih Kriteria========</option>
-                                @foreach ($criteria as $v)
-                                    <option value="{{ $v->id }}">{{ $v->code }} -
-                                        {{ $v->name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group col-12">
-                            <label for="subkriteria">Sub-Kriteria</label>
-                            <select class="form-control" name="subkriteria" id="subkriteria">
-                                <option value="0" disable="true" selected="true">========Nilai========
-                                </option>
-                            </select>
-                            @error('subkriteria')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group col-12">
-                            <label for="value">Nilai</label>
-                            <input id="value" type="text" value="0" readonly
-                                class="form-control @error('value')
-                            is-invalid
-                        @enderror"
-                                name="value">
-                            @error('value')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
+                        <x-Select :label="'Alternatif'" :name="'alternative_id'" :data="$malternative" :method="'add'" />
                     </div>
 
                     <x-CreateButton />
@@ -102,33 +105,19 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="formEdit" action="{{ route($breadcumb[0] . '.update', $value->id) }}" method="POST">
+                    <form id="forEdit" action="{{ route($breadcumb[0] . '.update', $value->id) }}" method="POST">
                         @csrf
                         @method('PUT')
 
                         <div class="row">
                             <div class="form-group col-12">
-                                <label for="">Kode</label>
-                                <input id="code" type="code"
-                                    class="form-control @error('code')
-                            is-invalid
+                                <label for="">Nilai</label>
+                                <input id="value" type="text"
+                                    class="form-control @error('value')
+                                is-invalid
                             @enderror"
-                                    name="code" value="{{ $value->code }}">
-                                @error('code')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="form-group col-12">
-                                <label for="">Nama</label>
-                                <input id="name" type="text"
-                                    class="form-control @error('name')
-                            is-invalid
-                        @enderror"
-                                    name="name" value="{{ $value->name }}">
-                                @error('name')
+                                    name="value" value="{{ $value->value }}">
+                                @error('value')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>

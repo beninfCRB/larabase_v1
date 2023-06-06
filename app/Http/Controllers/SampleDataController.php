@@ -40,13 +40,20 @@ class SampleDataController extends Controller
 
     public function index()
     {
+        // dd($this->new_object());
         $title = $this->title;
         $method = 'Data Semua Data Sample';
         $breadcumb = [$this->route, $method];
         $data = SampleData::all();
-        $alternative = Malternative::all();
-        $criteria = Mcriteria::all();
-        return view('modules.master.' . $this->route . '.index', compact('title', 'method', 'breadcumb', 'data', 'alternative', 'criteria'));
+        $malternative = Malternative::all();
+        $mcriteria = Mcriteria::all();
+        $nilai = $this->new_object()['nilai'];
+        $alternatif = $this->new_object()['alternatif'];
+        $n_kriteria = $this->new_object()['n_kriteria'];
+        $kriteria = $this->new_object()['kriteria'];
+        $jml_krt = $this->new_object()['jml_krt'];
+        // dd($nilai, $n_kriteria, $jml_krt, $kriteria);
+        return view('modules.master.' . $this->route . '.index', compact('title', 'method', 'breadcumb', 'nilai', 'alternatif', 'n_kriteria', 'kriteria', 'jml_krt', 'data', 'malternative', 'mcriteria'));
     }
 
     /**
@@ -67,14 +74,25 @@ class SampleDataController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validation($request);
+        $request->validate([
+            'alternative_id' => ['required', 'string', 'max:10']
+        ]);
 
         try {
-            SampleData::create([
-                'alternative_id' => $request->alternative_id,
-                'criteria_id' => $request->criteria_id,
-                'value' => $request->value,
-            ]);
+            $new = $this->new_object();
+
+            $check = SampleData::where('alternative_id', $request->alternative_id)->first();
+            if (isset($check)) {
+                return redirect()->route($this->route . '.index')->with('error', 'Data Sudah Ada');
+            }
+
+            for ($i = 1; $i <= $new['jml_krt']; $i++) {
+                SampleData::create([
+                    'alternative_id' => $request->alternative_id,
+                    'criteria_id' => Mcriteria::where('code', 'C' . $i)->first()->id,
+                    'value' => 0
+                ]);
+            }
 
             return redirect()->route($this->route . '.index')->with('success', 'Data berhasil ditambahkan');
         } catch (\Exception $e) {
@@ -113,14 +131,14 @@ class SampleDataController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validation($request);
+        $request->validate([
+            'value' => ['required', 'string', 'max:255']
+        ]);
 
         try {
             $user = SampleData::find($id);
             $user->update([
-                'alternative_id' => $request->alternative_id,
-                'criteria_id' => $request->criteria_id,
-                'value' => $request->value,
+                'value' => $request->value
             ]);
             return redirect()->route($this->route . '.index')->with('success', 'Data berhasil diubah');
         } catch (\Exception $e) {
@@ -136,8 +154,8 @@ class SampleDataController extends Controller
      */
     public function destroy($id)
     {
-        $user = SampleData::find($id);
-        $user->delete();
+        $alternatif = Malternative::where('code', $id)->first();
+        $user = SampleData::where('alternative_id', $alternatif->id)->delete();
 
         return redirect()->route($this->route . '.index')->with('success', 'Data Berhasil Dihapus');
     }
