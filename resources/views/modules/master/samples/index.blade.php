@@ -55,8 +55,11 @@
                                 <th>{{ $nama }}</th>
                                 <td>{{ $krit['C1']['nama_alternatif'] }}</td>
                                 @foreach ($kriteria as $k)
-                                    <td align='center'><a class="clickSample" data-toggle="modal"
-                                            data-target="#edit{{ strval($krit[$k]['id_data']) }}">{{ $krit[$k]['nilai'] }}</a>
+                                    <td align='center'><a style="text-decoration:none"
+                                            class="text-danger text-bold clickSample" data-toggle="modal"
+                                            data-target="#edit{{ strval($krit[$k]['id_data']) }}">
+                                            <h5>{{ number_format($krit[$k]['nilai'], 2) }}</h5>
+                                        </a>
                                     </td>
                                 @endforeach
                                 <td class="text-center">
