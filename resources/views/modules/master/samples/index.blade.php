@@ -16,7 +16,19 @@
                 </div>
             </div>
             <div class="card-body">
-                <table class="table table-striped table-bordered table-hover">
+                <div class="text-center text-sm load">
+                    <div class="loadingio-spinner-ellipsis-g13kl16i1a">
+                        <div class="ldio-57pp3duu948">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <table class="table table-striped table-bordered table-hover load-table">
                     <thead class="text-center">
                         <tr>
                             <th rowspan='3'>No</th>
@@ -43,9 +55,8 @@
                                 <th>{{ $nama }}</th>
                                 <td>{{ $krit['C1']['nama_alternatif'] }}</td>
                                 @foreach ($kriteria as $k)
-                                    {{-- <td align='center'>{{ $krit[$k]['nilai'] }}</td> --}}
-                                    <td align='center'><a data-toggle="modal"
-                                            data-target="#edit{{ $krit[$k]['id_data'] }}">{{ $krit[$k]['nilai'] }}</a>
+                                    <td align='center'><a class="clickSample" data-toggle="modal"
+                                            data-target="#edit{{ strval($krit[$k]['id_data']) }}">{{ $krit[$k]['nilai'] }}</a>
                                     </td>
                                 @endforeach
                                 <td class="text-center">
@@ -105,18 +116,37 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="forEdit" action="{{ route($breadcumb[0] . '.update', $value->id) }}" method="POST">
+
+                    <form action="{{ route($breadcumb[0] . '.update', $value->id) }}" method="POST">
                         @csrf
                         @method('PUT')
 
+                        <input id="criteria{{ $value->criteria_id }}" hidden type="text"
+                            value="{{ $value->criteria_id }}" class="criteria{{ $value->criteria_id }}">
+
                         <div class="row">
                             <div class="form-group col-12">
-                                <label for="">Nilai</label>
-                                <input id="value" type="text"
+                                <label for="subkriteria">Sub-Kriteria</label>
+                                <select class="form-control subkriteria{{ $value->criteria_id }}" name="subkriteria"
+                                    id="subkriteria{{ $value->criteria_id }}">
+                                    <option value="0" disable="true" selected="true">========Pilih
+                                        Sub-Kriteria========
+                                    </option>
+                                </select>
+                                @error('subkriteria')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-12">
+                                <label for="value">Nilai</label>
+                                <input id="value{{ $value->criteria_id }}" type="text" readonly
                                     class="form-control @error('value')
-                                is-invalid
-                            @enderror"
-                                    name="value" value="{{ $value->value }}">
+                                    is-invalid
+                                @enderror value{{ $value->criteria_id }}"
+                                    name="value">
                                 @error('value')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -129,6 +159,40 @@
             </div>
         </div>
     </div>
+    @php
+    @endphp
+    <script type="module">
+        let criteria_id = $('.criteria' + {{ strval($value->criteria_id) }}).val();
+        $('.load-table').hide();
+        $('.load').show();
+
+        setTimeout(function() {
+            $.get('/get/subcriteria?criteria_id=' + criteria_id, function(data) {
+
+                $('.value' + {{ strval($value->criteria_id) }}).empty();
+                $('.value' + {{ strval($value->criteria_id) }}).val(0);
+
+                $('.subkriteria' + {{ strval($value->criteria_id) }}).empty();
+                $('.subkriteria' + {{ strval($value->criteria_id) }}).append(
+                    '<option value="0" disable="true" selected="true">========Pilih Sub-Kriteria========</option>'
+                );
+                $('.load').hide();
+                $('.load-table').show();
+
+                $.each(data, function(index, obj) {
+                    $('.subkriteria' + {{ $value->criteria_id }}).append(
+                        '<option value="' + obj
+                        .value + '">' + obj
+                        .name +
+                        '</option>');
+                })
+            });
+        }, 200);
+
+        $('.subkriteria' + {{ strval($value->criteria_id) }}).change((e) => {
+            $('.value' + {{ strval($value->criteria_id) }}).val(e.target.value)
+        });
+    </script>
 @endforeach
 {{-- ===================================================Import================================================================ --}}
 <div class="modal" id="import" data-backdrop="static" data-keyboard="false" tabindex="-1"
@@ -166,3 +230,22 @@
         </div>
     </div>
 </div>
+<script type="module">
+    $(".btn-submit").click(function(e) {
+        e.preventDefault();
+        var form = this
+        Swal.fire({
+            title: "Yakin ingin menhapus data ini?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Ya!",
+            cancelButtonText: "Batal",
+            closeOnConfirm: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $(this).parent('form').trigger('submit')
+            }
+        });
+    });
+</script>

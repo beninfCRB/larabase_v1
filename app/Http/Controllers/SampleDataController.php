@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Imports\SampleDataImport;
 use App\Models\Malternative;
 use App\Models\Mcriteria;
+use App\Models\Msubcriteria;
 use App\Models\SampleData;
 use App\Traits\Mabac;
 use App\Traits\UseMessage;
@@ -47,13 +48,15 @@ class SampleDataController extends Controller
         $data = SampleData::all();
         $malternative = Malternative::all();
         $mcriteria = Mcriteria::all();
+        $msubcriteria = Msubcriteria::all();
         $nilai = $this->new_object()['nilai'];
         $alternatif = $this->new_object()['alternatif'];
         $n_kriteria = $this->new_object()['n_kriteria'];
         $kriteria = $this->new_object()['kriteria'];
         $jml_krt = $this->new_object()['jml_krt'];
         // dd($nilai, $n_kriteria, $jml_krt, $kriteria);
-        return view('modules.master.' . $this->route . '.index', compact('title', 'method', 'breadcumb', 'nilai', 'alternatif', 'n_kriteria', 'kriteria', 'jml_krt', 'data', 'malternative', 'mcriteria'));
+        // dd($data);
+        return view('modules.master.' . $this->route . '.index', compact('title', 'method', 'breadcumb', 'nilai', 'alternatif', 'n_kriteria', 'kriteria', 'jml_krt', 'data', 'malternative', 'mcriteria', 'msubcriteria'));
     }
 
     /**

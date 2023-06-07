@@ -1,6 +1,6 @@
 <div class="form-group col-12">
     <label for="exampleFormControlSelect1">{{ $label }}</label>
-    <select class="form-control" id="exampleFormControlSelect1" name="{{ $name }}" id="{{ $name }}">
+    <select class="form-control" name="{{ $name }}" id="{{ $name }}">
         @if ($value == null && $method == 'add')
             <option selected>========Pilih {{ $label }}========</option>
         @endif

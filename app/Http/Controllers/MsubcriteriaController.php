@@ -161,9 +161,9 @@ class MsubcriteriaController extends Controller
         }
     }
 
-    public function get_sub_kriteria()
+    public function get_sub_kriteria(Request $request)
     {
-        $data = Msubcriteria::where('criteria_id', '=', request()->get('criteria_id'))->get();
+        $data = Msubcriteria::where('criteria_id', '=', $request->criteria_id)->get();
         return response()->json($data);
     }
 }

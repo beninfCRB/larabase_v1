@@ -20,6 +20,7 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('assets/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/styles.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
 
     <!-- Custom styles for this page -->
@@ -86,31 +87,6 @@
     </div>
     @include('sweetalert::alert')
     @stack('scripts')
-    <script type="module">
-        $('#criteria_id').change((e) => {
-            var criteria_id = e.target.value
-
-                $.get('/get/subcriteria?criteria_id=' + criteria_id, function(data) {
-    
-                    $('#value').empty();
-                    $('#value').val(0);
-    
-                    $('#subkriteria').empty();
-                    $('#subkriteria').append(
-                        '<option value="0" disable="true" selected="true">========Nilai========</option>');
-                        
-                    $.each(data, function(index, subcriteriaObj) {
-                        $('#subkriteria').append('<option value="' + subcriteriaObj.value + '">' +
-                            subcriteriaObj
-                            .name + '</option>');
-                        })
-                });
-        });
-
-        $('#subkriteria').change((e)=>{
-            $('#value').val(e.target.value)
-        })
-    </script>
 </body>
 
 </html>
