@@ -61,4 +61,29 @@ trait Mabac
             'jml_krt' => count(array_unique($kriterias))
         ];
     }
+
+    public function max($criteria_id)
+    {
+        $data = DB::table('sample_data')
+            ->select(DB::raw('max(value) as max'))
+            ->where('criteria_id', '=', $criteria_id)
+            ->first();
+
+        return $data->max;
+    }
+
+    public function min($criteria_id)
+    {
+        $data = DB::table('sample_data')
+            ->select(DB::raw('min(value) as min'))
+            ->where('criteria_id', '=', $criteria_id)
+            ->first();
+
+        return $data->min;
+    }
+}
+
+class Constant
+{
+    use Mabac;
 }

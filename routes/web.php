@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MabacController;
 use App\Http\Controllers\MalternativeController;
 use App\Http\Controllers\McriteriaController;
 use App\Http\Controllers\MsubcriteriaController;
@@ -40,6 +41,7 @@ Route::middleware(['auth', 'verified', 'isActive'])->group(function () {
     Route::put('profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
 
     Route::middleware('Role:admin')->group(function () {
+        Route::get('mabacs', [MabacController::class, 'index'])->name('mabacs');
         Route::resource('users', UserController::class);
         Route::resource('types', MtypeController::class);
         Route::get('import/types', [MtypeController::class, 'show_import']);

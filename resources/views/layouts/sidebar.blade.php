@@ -60,6 +60,14 @@
                 <hr class="sidebar-divider">
 
                 <!-- Nav Item - Tables -->
+                <li class="nav-item {{ strstr($title, 'Perhitungan Mabac') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('mabacs') }}">
+                        <i class="fas fa-calculator"></i>
+                        <span>Perhitungan Mabac</span></a>
+                </li>
+
+                <hr class="sidebar-divider">
+
                 <li class="nav-item {{ strstr($title, 'Kelola Akun') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('users.index') }}">
                         <i class="fas fa-users"></i>
