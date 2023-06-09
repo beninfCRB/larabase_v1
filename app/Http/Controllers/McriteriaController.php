@@ -6,6 +6,7 @@ use App\DataTables\McriteriaDataTable;
 use App\Imports\McriteriaImport;
 use App\Models\Mcriteria;
 use App\Models\Mtype;
+use App\Models\SampleData;
 use App\Traits\UseMessage;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -68,16 +69,28 @@ class McriteriaController extends Controller
         $this->validation($request);
 
         try {
-            Mcriteria::create([
+            $new = Mcriteria::create([
                 'code' => strtoupper($request->code),
                 'name' => $request->name,
                 'value' => $request->value,
                 'type_id' => $request->type_id
             ]);
 
+            $check = SampleData::where('criteria_id', '=', $new->id)->first();
+            $alternative = SampleData::select('*')->groupBy('alternative_id')->get();
+            if (is_null($check)) {
+                foreach ($alternative as $a) {
+                    SampleData::create([
+                        'alternative_id' => $a->alternative_id,
+                        'criteria_id' => $new->id,
+                        'value' => 0
+                    ]);
+                }
+            }
+
             return redirect()->route($this->route . '.index')->with('success', 'Data berhasil ditambahkan');
         } catch (\Exception $e) {
-            return redirect()->route($this->route . '.index')->with('error', 'Data gagal ditambahkan');
+            return redirect()->route($this->route . '.index')->with('error', $e->getMessage());
         }
     }
 
@@ -125,7 +138,7 @@ class McriteriaController extends Controller
             ]);
             return redirect()->route($this->route . '.index')->with('success', 'Data berhasil diubah');
         } catch (\Exception $e) {
-            return redirect()->route($this->route . '.index')->with('error', 'Data gagal diubah');
+            return redirect()->route($this->route . '.index')->with('error', 'Data gagal ditambahkan');
         }
     }
 
@@ -137,6 +150,7 @@ class McriteriaController extends Controller
      */
     public function destroy($id)
     {
+        SampleData::where('criteria_id', '=', $id)->delete();
         $user = Mcriteria::find($id);
         $user->delete();
 
