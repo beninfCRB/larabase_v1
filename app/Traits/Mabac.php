@@ -69,11 +69,7 @@ trait Mabac
             ->where('criteria_id', '=', $criteria_id)
             ->first();
 
-        if ($data->max == 0) {
-            return 0;
-        } else {
-            return $data->max;
-        }
+        return $data->max;
     }
 
     public function min($criteria_id)
@@ -83,11 +79,7 @@ trait Mabac
             ->where('criteria_id', '=', $criteria_id)
             ->first();
 
-        if ($data->min == 0) {
-            return 0;
-        } else {
-            return $data->min;
-        }
+        return $data->min;
     }
 }
 
