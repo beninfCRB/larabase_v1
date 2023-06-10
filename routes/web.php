@@ -9,6 +9,7 @@ use App\Http\Controllers\MtypeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SampleDataController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WpController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -36,12 +37,13 @@ Route::get('/activation', function () {
 Route::get('/get/subcriteria', [MsubcriteriaController::class, 'get_sub_kriteria']);
 
 Route::middleware(['auth', 'verified', 'isActive'])->group(function () {
-    Route::get('home', [HomeController::class, 'index'])->name('home');
+    Route::get('home', [SampleDataController::class, 'index'])->name('home');
     Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::put('profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
 
     Route::middleware('Role:admin')->group(function () {
         Route::get('mabacs', [MabacController::class, 'index'])->name('mabacs');
+        Route::get('wps', [WpController::class, 'index'])->name('wps');
         Route::resource('users', UserController::class);
         Route::resource('types', MtypeController::class);
         Route::get('import/types', [MtypeController::class, 'show_import']);

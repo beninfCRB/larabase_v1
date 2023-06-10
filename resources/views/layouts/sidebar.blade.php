@@ -16,12 +16,12 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
+            {{-- <!-- Nav Item - Dashboard -->
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('/home') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
-            </li>
+            </li> --}}
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -64,6 +64,11 @@
                     <a class="nav-link" href="{{ route('mabacs') }}">
                         <i class="fas fa-calculator"></i>
                         <span>Perhitungan Mabac</span></a>
+                </li>
+                <li class="nav-item {{ strstr($title, 'Perhitungan Weight Product') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('wps') }}">
+                        <i class="fas fa-calculator"></i>
+                        <span>Perhitungan Wp</span></a>
                 </li>
 
                 <hr class="sidebar-divider">

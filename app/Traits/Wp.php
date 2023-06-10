@@ -63,7 +63,12 @@ trait Wp
     }
 }
 
-class Constant
+class ConstantWp
 {
     use Wp;
+
+    public function number($data)
+    {
+        return str_replace('.', ',', number_format($data, 3));
+    }
 }

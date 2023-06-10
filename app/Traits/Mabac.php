@@ -69,7 +69,11 @@ trait Mabac
             ->where('criteria_id', '=', $criteria_id)
             ->first();
 
-        return $data->max;
+        if ($data->max == 0) {
+            return 0;
+        } else {
+            return $data->max;
+        }
     }
 
     public function min($criteria_id)
@@ -79,11 +83,20 @@ trait Mabac
             ->where('criteria_id', '=', $criteria_id)
             ->first();
 
-        return $data->min;
+        if ($data->min == 0) {
+            return 0;
+        } else {
+            return $data->min;
+        }
     }
 }
 
-class Constant
+class ConstantMabac
 {
     use Mabac;
+
+    public function number($data)
+    {
+        return str_replace('.', ',', number_format($data, 3));
+    }
 }

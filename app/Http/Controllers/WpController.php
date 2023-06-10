@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Traits\Mabac;
+use App\Models\Malternative;
+use App\Models\Mcriteria;
 use App\Traits\UseMessage;
+use App\Traits\Wp;
 use Illuminate\Http\Request;
 
-class MabacController extends Controller
+class WpController extends Controller
 {
-    use Mabac;
+    use Wp;
     use UseMessage;
-    protected $title = 'Perhitungan Mabac';
-    protected $route = 'mabacs';
+    protected $title = 'Perhitungan Weight Product';
+    protected $route = 'wps';
 
     public function __construct()
     {
@@ -21,14 +23,16 @@ class MabacController extends Controller
     public function index()
     {
         $title = $this->title;
-        $method = 'Perhitungan Mabac';
+        $method = 'Perhitungan Weight Product';
         $breadcumb = [$this->route, $method];
         $nilai = $this->new_object()['nilai'];
         $alternatif = $this->new_object()['alternatif'];
         $n_kriteria = $this->new_object()['n_kriteria'];
         $kriteria = $this->new_object()['kriteria'];
         $jml_krt = $this->new_object()['jml_krt'];
+        $o_kriteria = Mcriteria::all();
+        $o_alternatif = Malternative::all();
 
-        return view('modules.' . $this->route . '.index', compact('title', 'method', 'breadcumb', 'nilai', 'alternatif', 'n_kriteria', 'kriteria', 'jml_krt'));
+        return view('modules.' . $this->route . '.index', compact('title', 'method', 'breadcumb', 'nilai', 'alternatif', 'n_kriteria', 'kriteria', 'jml_krt', 'o_kriteria', 'o_alternatif'));
     }
 }

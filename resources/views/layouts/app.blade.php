@@ -23,9 +23,6 @@
     <link href="{{ asset('assets/css/styles.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
 
-    <!-- Custom styles for this page -->
-    <link href="{{ asset('assets/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
-
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -76,17 +73,32 @@
 
             <!-- Custom scripts for all pages-->
             <script src="{{ asset('assets/js/sb-admin-2.min.js') }}"></script>
-
-            <!-- Page level plugins -->
-            <script src="{{ asset('assets/vendor/datatables/jquery.dataTables.min.js') }}"></script>
-            <script src="{{ asset('assets/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
-
-            <!-- Page level custom scripts -->
-            <script src="{{ asset('assets/js/demo/datatables-demo.js') }}"></script>
         </div>
     </div>
     @include('sweetalert::alert')
     @stack('scripts')
+    <script type="text/javascript">
+        $('.btn-print').click(function() {
+            $('.breadcumb').hide()
+            $('.top-bar').hide()
+            $('.sidebar').hide()
+            $('.footer').hide()
+            window.onafterprint = function(e) {
+                $(window).off('mousemove', window.onafterprint);
+                $('.breadcumb').show()
+                $('.top-bar').show()
+                $('.sidebar').show()
+                $('.footer').show()
+            };
+
+            window.print();
+
+            setTimeout(function() {
+                $(window).one('mousemove', window.onafterprint);
+            }, 1);
+
+        })
+    </script>
 </body>
 
 </html>

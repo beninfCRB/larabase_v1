@@ -164,7 +164,7 @@
     </div>
     @php
     @endphp
-    <script type="module">
+    <script type="text/javascript">
         let criteria_id = $('.criteria' + {{ strval($value->criteria_id) }}).val();
         $('.load-table').hide();
         $('.load').show();
@@ -233,7 +233,7 @@
         </div>
     </div>
 </div>
-<script type="module">
+<script type="text/javascript">
     $(".btn-submit").click(function(e) {
         e.preventDefault();
         var form = this

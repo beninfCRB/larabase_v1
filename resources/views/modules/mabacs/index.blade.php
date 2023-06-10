@@ -1,11 +1,16 @@
 <x-applayout :title="$title">
-    @Inject('Constant', 'App\Traits\Constant')
+    @Inject('ConstantMabac', 'App\Traits\ConstantMabac')
 
     <!-- Begin Page Content -->
     <div class="container-fluid">
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800 font-weight-bold">{{ $title }}</h1>
-        <x-BreadCumb :breadcumb="$breadcumb" />
+        <div class="breadcumb">
+            <h1 class="h3 mb-2 text-gray-800 font-weight-bold">{{ $title }}</h1>
+            <x-BreadCumb :breadcumb="$breadcumb" />
+            <div class="col-12 text-center m-4">
+                <button class="btn btn-success btn-print"><i class="fas fa-print"></i> Print</button>
+            </div>
+        </div>
         <div class="card shadow-lg">
             <h1 class="mx-auto mt-4">{{ $method }}</h1>
             <div class="card-body">
@@ -38,7 +43,8 @@
                                         <td>{{ $krit['C1']['nama_alternatif'] }}</td>
                                         @foreach ($kriteria as $k)
                                             <td class="text-center">
-                                                <h5 class="text-primary">{{ number_format($krit[$k]['nilai'], 2) }}</h5>
+                                                <h5 class="text-primary">
+                                                    {{ $ConstantMabac->number($krit[$k]['nilai']) }}</h5>
                                             </td>
                                         @endforeach
                                     </tr>
@@ -82,8 +88,8 @@
                                         @foreach ($kriteria as $k)
                                             @php
                                                 $jenis = $krit[$k]['jenis'];
-                                                $max = $Constant->max($krit[$k]['id_kriteria']);
-                                                $min = $Constant->min($krit[$k]['id_kriteria']);
+                                                $max = $ConstantMabac->max($krit[$k]['id_kriteria']);
+                                                $min = $ConstantMabac->min($krit[$k]['id_kriteria']);
                                                 if ($jenis == 'Benefit') {
                                                     $x = ($krit[$k]['nilai'] - $min) / ($max - $min);
                                                 } elseif ($jenis == 'Cost') {
@@ -93,7 +99,7 @@
                                                 }
                                             @endphp
                                             <td class="text-center">
-                                                <h5 class="text-primary">{{ number_format($x, 2) }}
+                                                <h5 class="text-primary">{{ $ConstantMabac->number($x) }}
                                                 </h5>
                                             </td>
                                         @endforeach
@@ -141,8 +147,8 @@
                                         @foreach ($kriteria as $k)
                                             @php
                                                 $jenis = $krit[$k]['jenis'];
-                                                $max = $Constant->max($krit[$k]['id_kriteria']);
-                                                $min = $Constant->min($krit[$k]['id_kriteria']);
+                                                $max = $ConstantMabac->max($krit[$k]['id_kriteria']);
+                                                $min = $ConstantMabac->min($krit[$k]['id_kriteria']);
                                                 if ($jenis == 'Benefit') {
                                                     $v = ($krit[$k]['nilai'] - $min) / ($max - $min);
                                                     $v_hasil = $v * $krit[$k]['bobot'] + $krit[$k]['bobot'];
@@ -156,7 +162,7 @@
                                                 $temp[$krit[$k]['id_kriteria']][$krit[$k]['nama_alternatif']] = $v_hasil;
                                             @endphp
                                             <td class="text-center">
-                                                <h5 class="text-primary">{{ number_format($v_hasil, 2) }}
+                                                <h5 class="text-primary">{{ $ConstantMabac->number($v_hasil) }}
                                                 </h5>
                                             </td>
                                         @endforeach
@@ -197,14 +203,14 @@
                                     @foreach ($temp as $t => $data)
                                         @php
                                             foreach ($alternatif as $a) {
-                                                $pos[] = number_format($data[$a], 2);
+                                                $pos[] = number_format($data[$a], 3);
                                             }
                                         @endphp
                                         <th class="text-center">
                                             <h5 class="text-primary">
                                                 @php
-                                                    $l = number_format(pow(array_product($pos), $pangkat), 2);
-                                                    echo $l;
+                                                    $l = number_format(pow(array_product($pos), $pangkat), 3);
+                                                    echo $ConstantMabac->number($l);
                                                 @endphp
                                             </h5>
                                         </th>
@@ -257,8 +263,8 @@
                                             @php
                                                 $id_kriteria = $krit[$k]['id_kriteria'];
                                                 $jenis = $krit[$k]['jenis'];
-                                                $max = $Constant->max($id_kriteria);
-                                                $min = $Constant->min($id_kriteria);
+                                                $max = $ConstantMabac->max($id_kriteria);
+                                                $min = $ConstantMabac->min($id_kriteria);
                                                 if ($jenis == 'Benefit') {
                                                     $v = ($krit[$k]['nilai'] - $min) / ($max - $min);
                                                     $v_hasil = $v * $krit[$k]['bobot'] + $krit[$k]['bobot'];
@@ -269,12 +275,12 @@
                                                     $v_hasil = 0;
                                                 }
                                                 
-                                                $y[$id_kriteria] = number_format($v_hasil - $G[$id_kriteria], 2);
+                                                $y[$id_kriteria] = number_format($v_hasil - $G[$id_kriteria], 3);
                                                 $z[$id_kriteria] = $krit['C1']['nama_alternatif'];
                                             @endphp
                                             <td class="text-center">
                                                 <h5 class="text-primary">
-                                                    {{ number_format($v_hasil - $G[$id_kriteria], 2) }}
+                                                    {{ $ConstantMabac->number($v_hasil - $G[$id_kriteria]) }}
                                                 </h5>
                                             </td>
                                         @endforeach
@@ -317,7 +323,7 @@
                                         <td>{{ $z['nama'][1] }}</td>
                                         <td class="text-center">
                                             <h5 class="text-primary">
-                                                {{ $z['nilai'] }}
+                                                {{ $ConstantMabac->number($z['nilai']) }}
                                             </h5>
                                         </td>
                                         <td class="text-center">
@@ -331,7 +337,6 @@
                         </table>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

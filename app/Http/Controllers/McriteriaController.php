@@ -83,7 +83,7 @@ class McriteriaController extends Controller
                     SampleData::create([
                         'alternative_id' => $a->alternative_id,
                         'criteria_id' => $new->id,
-                        'value' => 0
+                        'value' => 1
                     ]);
                 }
             }
