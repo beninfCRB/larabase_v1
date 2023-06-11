@@ -4,12 +4,10 @@ namespace App\Http\Controllers;
 
 use App\DataTables\UsersDataTable;
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
 use App\Traits\UseMessage;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -21,8 +19,8 @@ class UserController extends Controller
      */
     use UseMessage;
     use RegistersUsers;
-    protected $redirectTo = RouteServiceProvider::HOME;
-    public $title = 'Kelola Akun';
+    protected $title = 'Kelola Akun';
+    protected $route = 'users';
 
     public function __construct()
     {
@@ -44,7 +42,9 @@ class UserController extends Controller
     {
         $title = $this->title;
         $method = 'Data Semua Akun';
-        return $dataTable->render('modules.user.index', compact('title', 'method'));
+        $breadcumb = ['users', $method];
+        $data = User::all();
+        return $dataTable->render('modules.user.index', compact('title', 'method', 'breadcumb', 'data'));
     }
 
     /**
@@ -54,9 +54,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $title = $this->title;
-        $method = 'Buat Akun Baru';
-        return View('modules.user.create', compact('title', 'method'));
+        //
     }
 
     /**
@@ -78,9 +76,9 @@ class UserController extends Controller
                 'is_active' => $request->has('is_active') == "1" ? "1" : "0"
             ]);
 
-            return redirect()->route('users.index')->with('success', 'Data berhasil ditambahkan');
+            return redirect()->route($this->route . '.index')->with('success', 'Data berhasil ditambahkan');
         } catch (\Exception $e) {
-            return redirect()->route('users.index')->with('error', 'Data gagal ditambahkan');
+            return redirect()->route($this->route . '.index')->with('error', 'Data gagal ditambahkan');
         }
     }
 
@@ -103,10 +101,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $title = $this->title;
-        $method = 'Ubah Akun';
-        $data = User::find($id);
-        return View('modules.user.update', compact('title', 'data', 'method'));
+        //
     }
 
     /**
@@ -129,9 +124,9 @@ class UserController extends Controller
                 'role' => $request->role,
                 'is_active' => $request->has('is_active') == "1" ? "1" : "0"
             ]);
-            return redirect()->route('users.index')->with('success', 'Data berhasil diubah');
+            return redirect()->route($this->route . '.index')->with('success', 'Data berhasil diubah');
         } catch (\Exception $e) {
-            return redirect()->route('users.index')->with('error', 'Data gagal diubah');
+            return redirect()->route($this->route . '.index')->with('error', 'Data gagal diubah');
         }
     }
 
@@ -146,6 +141,6 @@ class UserController extends Controller
         $user = User::find($id);
         $user->delete();
 
-        return redirect()->route('users.index')->with('success', 'Data Berhasil Dihapus');
+        return redirect()->route($this->route . '.index')->with('success', 'Data Berhasil Dihapus');
     }
 }

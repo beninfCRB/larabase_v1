@@ -1,11 +1,15 @@
 <div aria-label="breadcrumb">
     <ol class="breadcrumb">
-        {{-- @for ($i = 0; $i < count($breadcumb); $i++)
-            @if (count($breadcumb) > $i)
-                <li class="breadcrumb-item"><a href="{{ url($data[$i]) }}}">{{ $breadcumb[$i] }}</a></li>
+        {{-- {{ $breadcumb }} --}}
+        @foreach ($breadcumb as $x => $v)
+            @if ($x < is_countable($breadcumb))
+                <li class="breadcrumb-item"><a class="badge badge-pill badge-primary"
+                        href="{{ url(strtolower($v)) }}">{{ $v }}</a>
+                </li>
             @else
-                <li class="breadcrumb-item active" aria-current="page">Library</li>
+                <li class="breadcrumb-item active" aria-current="page"><span
+                        class="badge badge-pill bg-primary">{{ $v }}</span></li>
             @endif
-        @endfor --}}
+        @endforeach
     </ol>
 </div>

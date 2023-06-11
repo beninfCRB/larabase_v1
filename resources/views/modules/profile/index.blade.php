@@ -1,16 +1,23 @@
-<x-applayout title="{{ $title }}">
+<x-applayout :title="$title">
     <!-- Begin Page Content -->
     <div class="container-fluid">
 
         <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800 font-weight-bold">{{ $title }}</h1>
+        {{-- {{ dd($breadcumb) }} --}}
+        <x-BreadCumb :breadcumb="$breadcumb" />
         <div class="card col-md-12 shadow-lg">
             <h1 class="mx-auto mt-4">{{ $method }}</h1>
             <div class="card-body col-md-6 border rounded mx-auto p-4 m-4 shadow-lg">
                 <x-BackButton module="users" />
                 <div class="mx-auto text-center">
-                    <img class="img-profile rounded-circle" src="{{ asset('storage/' . $data->picture) }}" alt=""
-                        width="80px" height="auto">
+                    @if (auth()->user()->picture)
+                        <img class="img-profile rounded-circle" src="{{ asset('storage/' . $data->picture) }}"
+                            alt="" width="80px" height="auto">
+                    @else
+                        <img class="img-profile rounded-circle" src="{{ asset('storage/avatar/undraw_profile.svg') }}"
+                            alt="" width="80px" height="auto">
+                    @endif
                 </div>
                 <form action="{{ route('profile.update', auth()->user()->id) }}" method="POST"
                     enctype="multipart/form-data">

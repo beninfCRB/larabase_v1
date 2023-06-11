@@ -16,8 +16,12 @@
                                     @endif
 
                                     <div class="text-center">
-                                        {{ __('Email anda belum diverifikasi') }},
-                                        {{ __('Klik tautan verifikasi email ini.') }}
+                                        @if (session('resent'))
+                                            {{ __('Apabila belum menerima tautan ke email kamu') }}
+                                        @else
+                                            {{ __('Email anda belum diverifikasi') }},
+                                            {{ __('Mohon klik tautan verifikasi email ini') }}
+                                        @endif
                                         <form class="d-inline" method="POST"
                                             action="{{ route('verification.resend') }}">
                                             @csrf
