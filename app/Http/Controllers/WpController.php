@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Malternative;
 use App\Models\Mcriteria;
+use App\Traits\Method;
 use App\Traits\UseMessage;
-use App\Traits\Wp;
 use Illuminate\Http\Request;
 
 class WpController extends Controller
 {
-    use Wp;
+    use Method;
     use UseMessage;
     protected $title = 'Perhitungan Weight Product';
     protected $route = 'wps';

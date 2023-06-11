@@ -1,5 +1,5 @@
 <x-applayout :title="$title">
-    @Inject('ConstantWp', 'App\Traits\ConstantWp')
+    @Inject('constant', 'App\Traits\constant')
 
     <!-- Begin Page Content -->
     <div class="container-fluid">
@@ -43,7 +43,7 @@
                                         <td>{{ $krit['C1']['nama_alternatif'] }}</td>
                                         @foreach ($kriteria as $k)
                                             <td class="text-center">
-                                                <h5 class="text-primary">{{ $ConstantWp->number($krit[$k]['nilai']) }}
+                                                <h5 class="text-primary">{{ $constant->number($krit[$k]['nilai']) }}
                                                 </h5>
                                             </td>
                                         @endforeach
@@ -84,10 +84,10 @@
                                                 @php
                                                     if ($o->type->name == 'Benefit') {
                                                         $value[$o->code] = number_format($o->value, 3);
-                                                        echo $ConstantWp->number($o->value);
+                                                        echo $constant->number($o->value);
                                                     } else {
                                                         $value[$o->code] = number_format(0 - $o->value, 3);
-                                                        echo $ConstantWp->number(0 - $o->value);
+                                                        echo $constant->number(0 - $o->value);
                                                     }
                                                 @endphp
                                             </h5>
@@ -135,7 +135,7 @@
                                                 <h5 class="text-primary">
                                                     @php
                                                         $temp[$nama][] = number_format(pow($krit[$k]['nilai'], $value[$k]), 3);
-                                                        echo $ConstantWp->number(pow($krit[$k]['nilai'], $value[$k]));
+                                                        echo $constant->number(pow($krit[$k]['nilai'], $value[$k]));
                                                     @endphp
                                                 </h5>
                                             </td>
@@ -168,7 +168,7 @@
                                             <h5 class="text-primary">
                                                 @php
                                                     $vektor_s[] = number_format(array_product($temp[$o->code]), 3);
-                                                    echo $ConstantWp->number(array_product($temp[$o->code]));
+                                                    echo $constant->number(array_product($temp[$o->code]));
                                                 @endphp
                                             </h5>
                                         </td>
@@ -204,7 +204,7 @@
                                                 @php
                                                     $vektor_v = number_format(array_product($temp[$o->code]) / $bottom, 3);
                                                     $rank[] = $vektor_v;
-                                                    echo $ConstantWp->number($vektor_v);
+                                                    echo $constant->number($vektor_v);
                                                 @endphp
                                             </h5>
                                         </td>

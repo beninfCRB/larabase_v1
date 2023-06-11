@@ -1,5 +1,5 @@
 <x-applayout :title="$title">
-    @Inject('ConstantMabac', 'App\Traits\ConstantMabac')
+    @Inject('constant', 'App\Traits\constant')
 
     <!-- Begin Page Content -->
     <div class="container-fluid">
@@ -44,7 +44,7 @@
                                         @foreach ($kriteria as $k)
                                             <td class="text-center">
                                                 <h5 class="text-primary">
-                                                    {{ $ConstantMabac->number($krit[$k]['nilai']) }}</h5>
+                                                    {{ $constant->number($krit[$k]['nilai']) }}</h5>
                                             </td>
                                         @endforeach
                                     </tr>
@@ -88,8 +88,8 @@
                                         @foreach ($kriteria as $k)
                                             @php
                                                 $jenis = $krit[$k]['jenis'];
-                                                $max = $ConstantMabac->max($krit[$k]['id_kriteria']);
-                                                $min = $ConstantMabac->min($krit[$k]['id_kriteria']);
+                                                $max = $constant->max($krit[$k]['id_kriteria']);
+                                                $min = $constant->min($krit[$k]['id_kriteria']);
                                                 if ($jenis == 'Benefit') {
                                                     $x = ($krit[$k]['nilai'] - $min) / ($max - $min);
                                                 } elseif ($jenis == 'Cost') {
@@ -99,7 +99,7 @@
                                                 }
                                             @endphp
                                             <td class="text-center">
-                                                <h5 class="text-primary">{{ $ConstantMabac->number($x) }}
+                                                <h5 class="text-primary">{{ $constant->number($x) }}
                                                 </h5>
                                             </td>
                                         @endforeach
@@ -147,8 +147,8 @@
                                         @foreach ($kriteria as $k)
                                             @php
                                                 $jenis = $krit[$k]['jenis'];
-                                                $max = $ConstantMabac->max($krit[$k]['id_kriteria']);
-                                                $min = $ConstantMabac->min($krit[$k]['id_kriteria']);
+                                                $max = $constant->max($krit[$k]['id_kriteria']);
+                                                $min = $constant->min($krit[$k]['id_kriteria']);
                                                 if ($jenis == 'Benefit') {
                                                     $v = ($krit[$k]['nilai'] - $min) / ($max - $min);
                                                     $v_hasil = $v * $krit[$k]['bobot'] + $krit[$k]['bobot'];
@@ -162,7 +162,7 @@
                                                 $temp[$krit[$k]['id_kriteria']][$krit[$k]['nama_alternatif']] = $v_hasil;
                                             @endphp
                                             <td class="text-center">
-                                                <h5 class="text-primary">{{ $ConstantMabac->number($v_hasil) }}
+                                                <h5 class="text-primary">{{ $constant->number($v_hasil) }}
                                                 </h5>
                                             </td>
                                         @endforeach
@@ -210,7 +210,7 @@
                                             <h5 class="text-primary">
                                                 @php
                                                     $l = number_format(pow(array_product($pos), $pangkat), 3);
-                                                    echo $ConstantMabac->number($l);
+                                                    echo $constant->number($l);
                                                 @endphp
                                             </h5>
                                         </th>
@@ -263,8 +263,8 @@
                                             @php
                                                 $id_kriteria = $krit[$k]['id_kriteria'];
                                                 $jenis = $krit[$k]['jenis'];
-                                                $max = $ConstantMabac->max($id_kriteria);
-                                                $min = $ConstantMabac->min($id_kriteria);
+                                                $max = $constant->max($id_kriteria);
+                                                $min = $constant->min($id_kriteria);
                                                 if ($jenis == 'Benefit') {
                                                     $v = ($krit[$k]['nilai'] - $min) / ($max - $min);
                                                     $v_hasil = $v * $krit[$k]['bobot'] + $krit[$k]['bobot'];
@@ -280,7 +280,7 @@
                                             @endphp
                                             <td class="text-center">
                                                 <h5 class="text-primary">
-                                                    {{ $ConstantMabac->number($v_hasil - $G[$id_kriteria]) }}
+                                                    {{ $constant->number($v_hasil - $G[$id_kriteria]) }}
                                                 </h5>
                                             </td>
                                         @endforeach
@@ -323,7 +323,7 @@
                                         <td>{{ $z['nama'][1] }}</td>
                                         <td class="text-center">
                                             <h5 class="text-primary">
-                                                {{ $ConstantMabac->number($z['nilai']) }}
+                                                {{ $constant->number($z['nilai']) }}
                                             </h5>
                                         </td>
                                         <td class="text-center">

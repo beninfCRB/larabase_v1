@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\DataTables\MalternativeDataTable;
 use App\Imports\MalternativeImport;
 use App\Models\Malternative;
+use App\Traits\Mabac;
 use App\Traits\UseMessage;
+use App\Traits\Wp;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 

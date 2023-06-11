@@ -164,33 +164,31 @@
     </div>
     @php
     @endphp
-    <script type="text/javascript">
+    <script type="module">
         let criteria_id = $('.criteria' + {{ strval($value->criteria_id) }}).val();
         $('.load-table').hide();
         $('.load').show();
 
-        setTimeout(function() {
-            $.get('/get/subcriteria?criteria_id=' + criteria_id, function(data) {
+        $.get('/get/subcriteria?criteria_id=' + criteria_id, function(data) {
 
-                $('.value' + {{ strval($value->criteria_id) }}).empty();
-                $('.value' + {{ strval($value->criteria_id) }}).val(0);
+            $('.value' + {{ strval($value->criteria_id) }}).empty();
+            $('.value' + {{ strval($value->criteria_id) }}).val(0);
 
-                $('.subkriteria' + {{ strval($value->criteria_id) }}).empty();
-                $('.subkriteria' + {{ strval($value->criteria_id) }}).append(
-                    '<option value="0" disable="true" selected="true">========Pilih Sub-Kriteria========</option>'
-                );
-                $('.load').hide();
-                $('.load-table').show();
+            $('.subkriteria' + {{ strval($value->criteria_id) }}).empty();
+            $('.subkriteria' + {{ strval($value->criteria_id) }}).append(
+                '<option value="0" disable="true" selected="true">========Pilih Sub-Kriteria========</option>'
+            );
+            $('.load').hide();
+            $('.load-table').show();
 
-                $.each(data, function(index, obj) {
-                    $('.subkriteria' + {{ $value->criteria_id }}).append(
-                        '<option value="' + obj
-                        .value + '">' + obj
-                        .name +
-                        '</option>');
-                })
-            });
-        }, 200);
+            $.each(data, function(index, obj) {
+                $('.subkriteria' + {{ $value->criteria_id }}).append(
+                    '<option value="' + obj
+                    .value + '">' + obj
+                    .name +
+                    '</option>');
+            })
+        });
 
         $('.subkriteria' + {{ strval($value->criteria_id) }}).change((e) => {
             $('.value' + {{ strval($value->criteria_id) }}).val(e.target.value)
@@ -233,7 +231,7 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
+<script type="module">
     $(".btn-submit").click(function(e) {
         e.preventDefault();
         var form = this

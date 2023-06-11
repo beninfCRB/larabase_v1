@@ -7,7 +7,7 @@ use App\Models\Malternative;
 use App\Models\Mcriteria;
 use App\Models\Msubcriteria;
 use App\Models\SampleData;
-use App\Traits\Mabac;
+use App\Traits\Method;
 use App\Traits\UseMessage;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -19,7 +19,7 @@ class SampleDataController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    use Mabac;
+    use Method;
     use UseMessage;
     protected $title = 'Master Data Sample';
     protected $route = 'samples';
@@ -42,6 +42,7 @@ class SampleDataController extends Controller
     public function index()
     {
         // dd($this->new_object());
+        $this->check_subcriteria();
         $title = $this->title;
         $method = 'Data Semua Sample';
         $breadcumb = [$this->route, $method];

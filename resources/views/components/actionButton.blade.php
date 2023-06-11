@@ -12,7 +12,7 @@
         </form>
     </div>
 </div>
-<script type="text/javascript">
+<script type="module">
     $(".btn-submit").click(function(e) {
         e.preventDefault();
         var form = this

@@ -77,7 +77,7 @@
     </div>
     @include('sweetalert::alert')
     @stack('scripts')
-    <script type="text/javascript">
+    <script type="module">
         $('.btn-print').click(function() {
             $('.breadcumb').hide()
             $('.top-bar').hide()

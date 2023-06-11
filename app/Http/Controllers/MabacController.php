@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Traits\Mabac;
+use App\Traits\Method;
 use App\Traits\UseMessage;
 use Illuminate\Http\Request;
 
 class MabacController extends Controller
 {
-    use Mabac;
+    use Method;
     use UseMessage;
     protected $title = 'Perhitungan Mabac';
     protected $route = 'mabacs';

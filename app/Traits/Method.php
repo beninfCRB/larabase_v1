@@ -4,7 +4,7 @@ namespace App\Traits;
 
 use Illuminate\Support\Facades\DB;
 
-trait Mabac
+trait Method
 {
     public function sample()
     {
@@ -81,14 +81,31 @@ trait Mabac
 
         return $data->min;
     }
-}
 
-class ConstantMabac
-{
-    use Mabac;
+    public function check_value()
+    {
+        $data = DB::table('sample_data')->where('value', '=', 0)->first();
+        return isset($data);
+    }
 
     public function number($data)
     {
         return str_replace('.', ',', number_format($data, 3));
     }
+
+    public function check_subcriteria()
+    {
+        $data = DB::table('mcriterias')->select('id')->get();
+        $check = [];
+        foreach ($data as $d) {
+            $check[] = DB::table('msubcriterias')->where('criteria_id', '=', $d->id)->first();
+        }
+
+        return empty(array_search(null, $check));
+    }
+}
+
+class constant
+{
+    use Method;
 }

@@ -3,6 +3,7 @@
             if
         @endphp --}}
 
+
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
@@ -51,8 +52,10 @@
                                 href="{{ route('subcriterias.index') }}">Sub-Kriteria</a>
                             <a class="collapse-item {{ strstr($title, 'Master Alternatif') ? 'active' : '' }}"
                                 href="{{ route('alternatives.index') }}">Alternatif</a>
-                            <a class="collapse-item {{ strstr($title, 'Master Data Sample') ? 'active' : '' }}"
-                                href="{{ route('samples.index') }}">Data Sample</a>
+                            @if ($check2)
+                                <a class="collapse-item {{ strstr($title, 'Master Data Sample') ? 'active' : '' }}"
+                                    href="{{ route('samples.index') }}">Data Sample</a>
+                            @endif
                         </div>
                     </div>
                 </li>
@@ -60,16 +63,20 @@
                 <hr class="sidebar-divider">
 
                 <!-- Nav Item - Tables -->
-                <li class="nav-item {{ strstr($title, 'Perhitungan Mabac') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('mabacs') }}">
-                        <i class="fas fa-calculator"></i>
-                        <span>Perhitungan Mabac</span></a>
-                </li>
-                <li class="nav-item {{ strstr($title, 'Perhitungan Weight Product') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('wps') }}">
-                        <i class="fas fa-calculator"></i>
-                        <span>Perhitungan Wp</span></a>
-                </li>
+                @if (!$check1)
+                    <li class="nav-item {{ strstr($title, 'Perhitungan Mabac') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('mabacs') }}">
+                            <i class="fas fa-calculator"></i>
+                            <span>Perhitungan Mabac</span></a>
+                    </li>
+                @endif
+                @if (!$check1)
+                    <li class="nav-item {{ strstr($title, 'Perhitungan Weight Product') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('wps') }}">
+                            <i class="fas fa-calculator"></i>
+                            <span>Perhitungan Wp</span></a>
+                    </li>
+                @endif
 
                 <hr class="sidebar-divider">
 
