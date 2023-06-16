@@ -61,7 +61,8 @@
                 </li>
 
                 <hr class="sidebar-divider">
-
+            @endif
+            @if (auth()->user()->role == 'user')
                 <!-- Nav Item - Tables -->
                 @if (!$check1)
                     <li class="nav-item {{ strstr($title, 'Perhitungan Mabac') ? 'active' : '' }}">
@@ -77,7 +78,8 @@
                             <span>Perhitungan Wp</span></a>
                     </li>
                 @endif
-
+            @endif
+            @if (auth()->user()->role == 'admin')
                 <hr class="sidebar-divider">
 
                 <li class="nav-item {{ strstr($title, 'Kelola Akun') ? 'active' : '' }}">
