@@ -62,23 +62,23 @@
 
                 <hr class="sidebar-divider">
             @endif
-            @if (auth()->user()->role == 'user')
-                <!-- Nav Item - Tables -->
-                @if (!$check1)
-                    <li class="nav-item {{ strstr($title, 'Perhitungan Mabac') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('mabacs') }}">
-                            <i class="fas fa-calculator"></i>
-                            <span>Perhitungan Mabac</span></a>
-                    </li>
-                @endif
-                @if (!$check1)
-                    <li class="nav-item {{ strstr($title, 'Perhitungan Weight Product') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('wps') }}">
-                            <i class="fas fa-calculator"></i>
-                            <span>Perhitungan Wp</span></a>
-                    </li>
-                @endif
+
+            <!-- Nav Item - Tables -->
+            @if (!$check1)
+                <li class="nav-item {{ strstr($title, 'Perhitungan Mabac') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('mabacs') }}">
+                        <i class="fas fa-calculator"></i>
+                        <span>Perhitungan Mabac</span></a>
+                </li>
             @endif
+            @if (!$check1)
+                <li class="nav-item {{ strstr($title, 'Perhitungan Weight Product') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('wps') }}">
+                        <i class="fas fa-calculator"></i>
+                        <span>Perhitungan Wp</span></a>
+                </li>
+            @endif
+
             @if (auth()->user()->role == 'admin')
                 <hr class="sidebar-divider">
 
