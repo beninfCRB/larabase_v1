@@ -542,7 +542,12 @@
         }
 
         .bg-dots-darker {
-            background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(0,0,0,0.07)'/%3E%3C/svg%3E")
+            background-image: url({{ asset('image/bg.jpg') }});
+            height: 100%;
+
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
 
         .from-gray-700\/50 {
@@ -862,11 +867,13 @@
                                 <img src="{{ asset('image/Satria.png') }}" alt="">
                             </div>
 
-                            <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">Dinas Perindustrian dan Perdagangan</h2>
+                            <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">Dinas Perindustrian dan
+                                Perdagangan</h2>
 
                             <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
                                 Organisasi Pemerintah
-                                Dinas Perindustrian Dan Perdagangan merupakan perangkat daerah di Provinsi Jawa Barat yang mengurusi urusan pemerintah bidang perindustrian dan perdagangan.
+                                Dinas Perindustrian Dan Perdagangan merupakan perangkat daerah di Provinsi Jawa Barat
+                                yang mengurusi urusan pemerintah bidang perindustrian dan perdagangan.
                                 <a href="https://www.instagram.com/perindustrianmajalengka/?hl=id/">Dinas Perindustrian
                                     dan Perdagangan</a>
                                 majalengka 📍Sentra IKM Cikasarung Majalengka
