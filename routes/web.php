@@ -37,13 +37,13 @@ Route::get('/activation', function () {
 Route::get('/get/subcriteria', [MsubcriteriaController::class, 'get_sub_kriteria']);
 
 Route::middleware(['auth', 'verified', 'isActive'])->group(function () {
-    Route::get('home', [SampleDataController::class, 'index'])->name('home');
     Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::put('profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
     Route::get('mabacs', [MabacController::class, 'index'])->name('mabacs');
     Route::get('wps', [WpController::class, 'index'])->name('wps');
 
     Route::middleware('Role:admin')->group(function () {
+        Route::get('home', [SampleDataController::class, 'index'])->name('home');
         Route::resource('users', UserController::class);
         Route::resource('types', MtypeController::class);
         Route::get('import/types', [MtypeController::class, 'show_import']);

@@ -21,6 +21,10 @@ class Role
             return $next($request);
         }
 
+        if (strstr($request->user()->role, 'user')) {
+            return redirect('/mabacs');
+        }
+
         return redirect('/home');
     }
 }
