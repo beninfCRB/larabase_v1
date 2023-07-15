@@ -16,10 +16,10 @@ class MsubcriteriaSeeder extends Seeder
     {
         $data = [
             ['id' => 1, 'code' => 'SC1', 'name' => 'NIB', 'value' => 1, 'criteria_id' => 1, 'created_at' => now(), 'updated_at' => now(),],
-            ['id' => 2, 'code' => 'SC2', 'name' => 'PIRT', 'value' => 1.5, 'criteria_id' => 1, 'created_at' => now(), 'updated_at' => now(),],
-            ['id' => 3, 'code' => 'SC3', 'name' => 'HALAL', 'value' => 2, 'criteria_id' => 1, 'created_at' => now(), 'updated_at' => now(),],
-            ['id' => 4, 'code' => 'SC4', 'name' => 'N.C', 'value' => 2.5, 'criteria_id' => 1, 'created_at' => now(), 'updated_at' => now(),],
-            ['id' => 5, 'code' => 'SC5', 'name' => 'HAKI', 'value' => 3, 'criteria_id' => 1, 'created_at' => now(), 'updated_at' => now(),],
+            ['id' => 2, 'code' => 'SC2', 'name' => 'NIB,PIRT', 'value' => 1.5, 'criteria_id' => 1, 'created_at' => now(), 'updated_at' => now(),],
+            ['id' => 3, 'code' => 'SC3', 'name' => 'NIB,PIRT,HALAL', 'value' => 2, 'criteria_id' => 1, 'created_at' => now(), 'updated_at' => now(),],
+            ['id' => 4, 'code' => 'SC4', 'name' => 'NIB,PIRT,HALAL,N.C', 'value' => 2.5, 'criteria_id' => 1, 'created_at' => now(), 'updated_at' => now(),],
+            ['id' => 5, 'code' => 'SC5', 'name' => 'NIB,PIRT,HALAL,N.C,HAKI', 'value' => 3, 'criteria_id' => 1, 'created_at' => now(), 'updated_at' => now(),],
             ['id' => 6, 'code' => 'SC6', 'name' => '1.000000 s/d 50.000.000', 'value' => 1, 'criteria_id' => 2, 'created_at' => now(), 'updated_at' => now(),],
             ['id' => 7, 'code' => 'SC7', 'name' => '50.000.000 s/d 250.000.000', 'value' => 1.5, 'criteria_id' => 2, 'created_at' => now(), 'updated_at' => now(),],
             ['id' => 8, 'code' => 'SC8', 'name' => '250.000.000 s/d 500.000.000', 'value' => 2, 'criteria_id' => 2, 'created_at' => now(), 'updated_at' => now(),],

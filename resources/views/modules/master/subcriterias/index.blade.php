@@ -44,7 +44,7 @@
 
                     <div class="row">
                         <div class="form-group col-12">
-                            <label for="">Kode Jenis</label>
+                            <label for="">Kode Sub-Kriteria</label>
                             <input id="code" type="text"
                                 class="form-control @error('code')
                             is-invalid
@@ -58,7 +58,7 @@
 
                     <div class="row">
                         <div class="form-group col-12">
-                            <label for="">Nama</label>
+                            <label for="">Nama Sub-Kriteria</label>
                             <input id="name" type="text"
                                 class="form-control @error('name')
                             is-invalid
@@ -72,7 +72,7 @@
 
                     <div class="row">
                         <div class="form-group col-12">
-                            <label for="">Nilai</label>
+                            <label for="">Nilai Sub-Kriteria</label>
                             <input id="value" type="text"
                                 class="form-control @error('value')
                             is-invalid
@@ -113,7 +113,7 @@
                         @method('PUT')
                         <div class="row">
                             <div class="form-group col-12">
-                                <label for="">Kode</label>
+                                <label for="">Kode Sub-Kriteria</label>
                                 <input id="code" type="code"
                                     class="form-control @error('code')
                                 is-invalid
@@ -127,7 +127,7 @@
 
                         <div class="row">
                             <div class="form-group col-12">
-                                <label for="">Nama</label>
+                                <label for="">Nama Sub-Kriteria</label>
                                 <input id="name" type="text"
                                     class="form-control @error('name')
                                 is-invalid
@@ -141,7 +141,7 @@
 
                         <div class="row">
                             <div class="form-group col-12">
-                                <label for="">Nilai</label>
+                                <label for="">Nilai Sub-Kriteria</label>
                                 <input id="value" type="text"
                                     class="form-control @error('value')
                                 is-invalid

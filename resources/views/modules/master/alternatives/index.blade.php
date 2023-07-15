@@ -43,7 +43,7 @@
 
                     <div class="row">
                         <div class="form-group col-12">
-                            <label for="">Kode</label>
+                            <label for="">Kode Alternatif</label>
                             <input id="code" type="text"
                                 class="form-control @error('code')
                             is-invalid
@@ -57,7 +57,7 @@
 
                     <div class="row">
                         <div class="form-group col-12">
-                            <label for="">Nama</label>
+                            <label for="">Nama Alternatif</label>
                             <input id="name" type="text"
                                 class="form-control @error('name')
                             is-invalid
@@ -95,7 +95,7 @@
 
                         <div class="row">
                             <div class="form-group col-12">
-                                <label for="">Kode</label>
+                                <label for="">Kode Alternatif</label>
                                 <input id="code" type="code"
                                     class="form-control @error('code')
                             is-invalid
@@ -109,7 +109,7 @@
 
                         <div class="row">
                             <div class="form-group col-12">
-                                <label for="">Nama</label>
+                                <label for="">Nama Alternatif</label>
                                 <input id="name" type="text"
                                     class="form-control @error('name')
                             is-invalid

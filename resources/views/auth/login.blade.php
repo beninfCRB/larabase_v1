@@ -15,7 +15,7 @@
                                         <img src="{{ asset('image/logo.png') }}" alt="" width="100px"
                                             height="auto">
                                         <h5 class="card-title text-center pb-0 fs-4">
-                                            Masuk ke akun Anda</h5>
+                                            Sistem Pendukung Keputusan Penentuan Prioritas Pembinaan Industri Makanan</h5>
                                         <p class="text-center small">Masukkan email & kata sandi Anda untuk login</p>
                                     </div>
 
