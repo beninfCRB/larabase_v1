@@ -13,6 +13,14 @@
         </div>
         <div class="card shadow-lg">
             <h1 class="mx-auto mt-4">{{ $method }}</h1>
+            <div class="col-lg-12 text-left">
+                <h2>Rumus : </h2>
+                <div class="row">
+                    <div class="col-2">
+                        <img src="{{ asset('image/mabac/matriks_keputusan_awal.jpg') }}" alt="">
+                    </div>
+                </div>
+            </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-12">
@@ -58,6 +66,27 @@
                 <div class="row mt-5 mb-5">
                     <div class="col-lg-12 text-center">
                         <h2>Matriks Normalisasi</h2>
+                    </div>
+                    <div class="col-lg-12 text-left">
+                        <h2>Rumus : </h2>
+                        <div class="row">
+                            <div class="col-2">
+                                <h4>Jenis kriteria benefit</h4>
+                                <img src="{{ asset('image/mabac/jenis_benefit.jpg') }}" alt="">
+                            </div>
+                            <div class="col-2">
+                                <h4>Jenis kriteria cost</h4>
+                                <img src="{{ asset('image/mabac/jenis_cost.jpg') }}" alt="">
+                            </div>
+                            <div class="col-2">
+                                <h4>Mewakili nilai maksimum dari kriteria yang diamati oleh alternatif</h4>
+                                <img src="{{ asset('image/mabac/nilai_max.jpg') }}" alt="">
+                            </div>
+                            <div class="col-2">
+                                <h4>Mewakili nilai minimum dari kriteria yang diamati oleh alternatif</h4>
+                                <img src="{{ asset('image/mabac/nilai_min.jpg') }}" alt="">
+                            </div>
+                        </div>
                     </div>
                     <div class="col-lg-12">
                         <table class="table table-striped table-bordered table-hover load-table">
@@ -113,7 +142,15 @@
                 {{-- ===================================================Matriks Tertimbang================================================================ --}}
                 <div class="row mt-5 mb-5">
                     <div class="col-lg-12 text-center">
-                        <h2>Matriks Bobot Keputusan</h2>
+                        <h2>Matriks Tertimbang</h2>
+                    </div>
+                    <div class="col-lg-12 text-left">
+                        <h2>Rumus : </h2>
+                        <div class="row">
+                            <div class="col-2">
+                                <img src="{{ asset('image/mabac/matriks_tertimbang.jpg') }}" alt="">
+                            </div>
+                        </div>
                     </div>
                     <div class="col-lg-12">
                         <table class="table table-striped table-bordered table-hover load-table">
@@ -178,6 +215,14 @@
                     <div class="col-lg-12 text-center">
                         <h2>Matriks Batas</h2>
                     </div>
+                    <div class="col-lg-12 text-left">
+                        <h2>Rumus : </h2>
+                        <div class="row">
+                            <div class="col-2">
+                                <img src="{{ asset('image/mabac/matriks_batas.jpg') }}" alt="">
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-lg-12">
                         <table class="table table-striped table-bordered table-hover load-table">
                             <thead class="text-center">
@@ -229,6 +274,14 @@
                 <div class="row mt-5 mb-5">
                     <div class="col-lg-12 text-center">
                         <h2>Matriks Jarak Alternatif</h2>
+                    </div>
+                    <div class="col-lg-12 text-left">
+                        <h2>Rumus : </h2>
+                        <div class="row">
+                            <div class="col-2">
+                                <img src="{{ asset('image/mabac/matriks_jarak.jpg') }}" alt="">
+                            </div>
+                        </div>
                     </div>
                     <div class="col-lg-12">
                         <table class="table table-striped table-bordered table-hover load-table">
@@ -298,6 +351,14 @@
                 <div class="row mt-5 mb-5">
                     <div class="col-lg-12 text-center">
                         <h2>Perangkingan</h2>
+                    </div>
+                    <div class="col-lg-12 text-left">
+                        <h2>Rumus : </h2>
+                        <div class="row">
+                            <div class="col-2">
+                                <img src="{{ asset('image/mabac/perankingan.jpg') }}" alt="">
+                            </div>
+                        </div>
                     </div>
                     <div class="col-lg-12">
                         <table class="table table-striped table-bordered table-hover load-table">
