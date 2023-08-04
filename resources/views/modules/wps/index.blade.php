@@ -151,6 +151,8 @@
                 <div class="row mt-5 mb-5">
                     <div class="col-lg-12 text-center">
                         <h2>Nilai Vektor S</h2>
+                        <h2>Rumus : </h2>
+                        <img src="{{ asset('image/wp/vektor_s.jpg') }}" alt="">
                     </div>
                     <div class="col-lg-6 mx-auto">
                         <table class="table table-striped table-bordered table-hover load-table">
@@ -183,6 +185,10 @@
                 <div class="row mt-5 mb-5">
                     <div class="col-lg-12 text-center">
                         <h2>Nilai Vektor V</h2>
+                    </div>
+                    <div class="col-lg-12 text-center">
+                        <h2>Rumus : </h2>
+                        <img src="{{ asset('image/wp/vektor_v.jpg') }}" alt="">
                     </div>
                     <div class="col-lg-6 mx-auto">
                         <table class="table table-striped table-bordered table-hover load-table">
