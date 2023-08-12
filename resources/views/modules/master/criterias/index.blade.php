@@ -84,7 +84,7 @@
                     </div>
 
                     <div class="row">
-                        <x-Select :label="'Jenis'" :name="'type_id'" :data="$type" :method="'add'" />
+                        <x-Select :label="'Jenis Kriteria'" :name="'type_id'" :data="$type" :method="'add'" />
                     </div>
 
                     <x-CreateButton />
@@ -153,7 +153,7 @@
                         </div>
 
                         <div class="row">
-                            <x-Select :label="'Jenis'" :name="'type_id'" :data="$type" :value="$value->type_id"
+                            <x-Select :label="'Jenis Kriteria'" :name="'type_id'" :data="$type" :value="$value->type_id"
                                 :method="'edit'" />
                         </div>
 
