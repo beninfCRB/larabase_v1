@@ -21,7 +21,7 @@ class SampleDataController extends Controller
      */
     use Method;
     use UseMessage;
-    protected $title = 'Master Data Sample';
+    protected $title = 'Halaman Data Sample';
     protected $route = 'samples';
 
     public function __construct()

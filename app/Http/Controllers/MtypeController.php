@@ -17,7 +17,7 @@ class MtypeController extends Controller
      * @return \Illuminate\Http\Response
      */
     use UseMessage;
-    protected $title = 'Master Jenis';
+    protected $title = 'Halaman Jenis';
     protected $route = 'types';
 
     public function __construct()

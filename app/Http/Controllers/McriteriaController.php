@@ -19,7 +19,7 @@ class McriteriaController extends Controller
      * @return \Illuminate\Http\Response
      */
     use UseMessage;
-    protected $title = 'Master Kriteria';
+    protected $title = 'Halaman Kriteria';
     protected $route = 'criterias';
 
     public function __construct()
