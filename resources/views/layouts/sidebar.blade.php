@@ -38,7 +38,7 @@
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMaster"
                         aria-expanded="true" aria-controls="collapseMaster">
                         <i class="fas fa-database"></i>
-                        <span>Master</span>
+                        <span>Halaman</span>
                     </a>
                     <div id="collapseMaster" class="collapse {{ strstr($title, 'Master') ? 'show' : '' }}"
                         aria-labelledby="headingTwo" data-parent="#collapseMaster">
