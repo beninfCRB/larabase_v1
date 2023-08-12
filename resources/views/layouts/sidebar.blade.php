@@ -34,26 +34,26 @@
                 </div>
 
                 <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item {{ strstr($title, 'Master') ? 'active' : '' }}">
+                <li class="nav-item {{ strstr($title, 'Halaman') ? 'active' : '' }}">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMaster"
                         aria-expanded="true" aria-controls="collapseMaster">
                         <i class="fas fa-database"></i>
-                        <span>Master</span>
+                        <span>Halaman</span>
                     </a>
-                    <div id="collapseMaster" class="collapse {{ strstr($title, 'Master') ? 'show' : '' }}"
+                    <div id="collapseMaster" class="collapse {{ strstr($title, 'Halaman') ? 'show' : '' }}"
                         aria-labelledby="headingTwo" data-parent="#collapseMaster">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Data Master</h6>
-                            <a class="collapse-item {{ strstr($title, 'Master Jenis') ? 'active' : '' }}"
-                                href="{{ route('types.index') }}">Jenis</a>
-                            <a class="collapse-item {{ strstr($title, 'Master Kriteria') ? 'active' : '' }}"
+                            {{-- <a class="collapse-item {{ strstr($title, 'Halaman Jenis') ? 'active' : '' }}"
+                                href="{{ route('types.index') }}">Jenis</a> --}}
+                            <a class="collapse-item {{ strstr($title, 'Halaman Kriteria') ? 'active' : '' }}"
                                 href="{{ route('criterias.index') }}">Kriteria</a>
-                            <a class="collapse-item {{ strstr($title, 'Master Sub-Kriteria') ? 'active' : '' }}"
+                            <a class="collapse-item {{ strstr($title, 'Halaman Sub-Kriteria') ? 'active' : '' }}"
                                 href="{{ route('subcriterias.index') }}">Sub-Kriteria</a>
-                            <a class="collapse-item {{ strstr($title, 'Master Alternatif') ? 'active' : '' }}"
+                            <a class="collapse-item {{ strstr($title, 'Halaman Alternatif') ? 'active' : '' }}"
                                 href="{{ route('alternatives.index') }}">Alternatif</a>
                             @if ($check2)
-                                <a class="collapse-item {{ strstr($title, 'Master Data Sample') ? 'active' : '' }}"
+                                <a class="collapse-item {{ strstr($title, 'Halaman Data Sample') ? 'active' : '' }}"
                                     href="{{ route('samples.index') }}">Data Sample</a>
                             @endif
                         </div>
@@ -88,6 +88,14 @@
                         <span>Kelola Akun</span></a>
                 </li>
             @endif
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('logout') }}"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Log Out
+                </a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

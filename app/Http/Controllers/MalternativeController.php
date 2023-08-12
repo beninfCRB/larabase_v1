@@ -19,7 +19,7 @@ class MalternativeController extends Controller
      * @return \Illuminate\Http\Response
      */
     use UseMessage;
-    protected $title = 'Master Alternatif';
+    protected $title = 'Halaman Alternatif';
     protected $route = 'alternatives';
 
     public function __construct()

@@ -18,7 +18,7 @@ class MsubcriteriaController extends Controller
      * @return \Illuminate\Http\Response
      */
     use UseMessage;
-    protected $title = 'Master Sub-Kriteria';
+    protected $title = 'Halaman Sub-Kriteria';
     protected $route = 'subcriterias';
 
     public function __construct()

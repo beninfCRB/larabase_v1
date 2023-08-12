@@ -73,6 +73,7 @@
                             is-invalid
                             @enderror"
                                 name="password" autocomplete="new-password">
+                            <div class="text-danger text-red">kata sandi baru minimal 8 karakter</div>
                             @error('password')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -81,6 +82,7 @@
                             <label for="">Konfirmasi Kata Sandi Baru</label>
                             <input id="password_confirmation" type="password" class="form-control"
                                 name="password_confirmation" autocomplete="new-password">
+                            <div class="text-danger text-red">konfirmasi kata sandi baru minimal 8 karakter</div>
                         </div>
                     </div>
 
