@@ -33,7 +33,7 @@ class MtypesDataTable extends DataTable
             ->addColumn('action', function ($row) {
                 return view("modules.master.types.action", ['data' => $row->id]);
             })
-            ->rawColumns(['action'])
+            // ->rawColumns(['action'])
             ->setRowId('id');
     }
 
@@ -88,11 +88,11 @@ class MtypesDataTable extends DataTable
             Column::make('name')->title('Nama Jenis'),
             Column::make('created_at')->title('Tanggal Dibuat'),
             Column::make('updated_at')->title('Tanggal Diubah'),
-            Column::computed('action')
-                ->exportable(false)
-                ->printable(false)
-                ->width(60)
-                ->addClass('text-center'),
+            // Column::computed('action')
+            //     ->exportable(false)
+            //     ->printable(false)
+            //     ->width(60)
+            //     ->addClass('text-center'),
         ];
     }
 

@@ -7,14 +7,14 @@
         <x-BreadCumb :breadcumb="$breadcumb" />
         <div class="card shadow-lg">
             <h1 class="mx-auto mt-4">{{ $method }}</h1>
-            <div class="row ml-auto">
+            {{-- <div class="row ml-auto">
                 <div class="col">
                     <x-ImportExcelButton :module="$breadcumb[0]" />
                 </div>
                 <div class="col">
                     <x-AddButton :module="$breadcumb[0]" />
                 </div>
-            </div>
+            </div> --}}
             <div class="card-body">
                 {{ $dataTable->table() }}
             </div>
@@ -69,7 +69,7 @@
                         </div>
                     </div>
 
-                    <x-CreateButton />
+                    {{-- <x-CreateButton /> --}}
                 </form>
             </div>
         </div>
@@ -121,7 +121,7 @@
                             </div>
                         </div>
 
-                        <x-CreateButton />
+                        {{-- <x-CreateButton /> --}}
                     </form>
                 </div>
             </div>

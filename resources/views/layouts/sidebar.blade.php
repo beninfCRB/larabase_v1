@@ -44,8 +44,8 @@
                         aria-labelledby="headingTwo" data-parent="#collapseMaster">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Data Master</h6>
-                            {{-- <a class="collapse-item {{ strstr($title, 'Halaman Jenis') ? 'active' : '' }}"
-                                href="{{ route('types.index') }}">Jenis</a> --}}
+                            <a class="collapse-item {{ strstr($title, 'Halaman Jenis') ? 'active' : '' }}"
+                                href="{{ route('types.index') }}">Jenis Kriteria</a>
                             <a class="collapse-item {{ strstr($title, 'Halaman Kriteria') ? 'active' : '' }}"
                                 href="{{ route('criterias.index') }}">Kriteria</a>
                             <a class="collapse-item {{ strstr($title, 'Halaman Sub-Kriteria') ? 'active' : '' }}"
