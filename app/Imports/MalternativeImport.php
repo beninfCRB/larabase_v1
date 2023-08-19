@@ -15,8 +15,8 @@ class MalternativeImport implements ToModel
     public function model(array $row)
     {
         return new Malternative([
-            'code' => $row[0],
-            'name' => $row[1]
+            'code_alternative' => $row[0],
+            'name_alternative' => $row[1]
         ]);
     }
 }

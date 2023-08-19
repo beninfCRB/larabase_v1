@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class SampleData extends Model
 {
     use HasFactory;
-    protected $fillable = ['alternative_id', 'criteria_id', 'value'];
+    protected $fillable = ['alternative_id', 'criteria_id', 'value_sample_data'];
 
     public function alternative()
     {

@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('msubcriterias', function (Blueprint $table) {
             $table->id();
-            $table->string('code')->unique();
-            $table->string('name');
-            $table->float('value');
+            $table->string('code_subcriteria')->unique();
+            $table->string('name_subcriteria');
+            $table->float('value_subcriteria');
             $table->unsignedBigInteger('criteria_id');
             $table->foreign('criteria_id')->references('id')->on('mcriterias')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();

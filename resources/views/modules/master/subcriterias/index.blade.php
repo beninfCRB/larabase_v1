@@ -85,7 +85,22 @@
                     </div>
 
                     <div class="row">
-                        <x-Select :label="'Kriteria'" :name="'criteria_id'" :data="$criteria" :method="'add'" />
+                        <div class="form-group col-12">
+                            <label for="criteria_id">Sub-Kriteria</label>
+                            <select class="form-control" name="criteria_id" id="criteria_id">
+                                <option value="0" disable="true" selected="true">========Pilih
+                                    Kriteria========
+                                </option>
+                                @foreach ($criteria as $v)
+                                    <option value="{{ $v->id }}">
+                                        {{ $v->code_criteria }} - {{ $v->name_criteria }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('criteria_id')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
 
                     <x-CreateButton />
@@ -118,7 +133,7 @@
                                     class="form-control @error('code')
                                 is-invalid
                                 @enderror"
-                                    name="code" value="{{ $value->code }}">
+                                    name="code" value="{{ $value->code_subcriteria }}">
                                 @error('code')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -132,7 +147,7 @@
                                     class="form-control @error('name')
                                 is-invalid
                             @enderror"
-                                    name="name" value="{{ $value->name }}">
+                                    name="name" value="{{ $value->name_subcriteria }}">
                                 @error('name')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -146,7 +161,7 @@
                                     class="form-control @error('value')
                                 is-invalid
                             @enderror"
-                                    name="value" value="{{ $value->value }}">
+                                    name="value" value="{{ $value->value_subcriteria }}">
                                 @error('value')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -154,8 +169,22 @@
                         </div>
 
                         <div class="row">
-                            <x-Select :label="'Kriteria'" :name="'criteria_id'" :data="$criteria" :value="$value->criteria_id"
-                                :method="'edit'" />
+                            <div class="form-group col-12">
+                                <label for="criteria_id">Sub-Kriteria</label>
+                                <select class="form-control" name="criteria_id" id="criteria_id">
+                                    <option value="{{ $value->criteria_id }}" disable="true" selected="true">
+                                        {{ $value->criteria->code_criteria }} - {{ $value->criteria->name_criteria }}
+                                    </option>
+                                    @foreach ($criteria as $v)
+                                        <option value="{{ $v->id }}">
+                                            {{ $v->code_criteria }} - {{ $v->name_criteria }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('criteria_id')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
                         </div>
 
                         <x-CreateButton />

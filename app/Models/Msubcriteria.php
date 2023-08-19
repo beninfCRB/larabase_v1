@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Msubcriteria extends Model
 {
     use HasFactory;
-    protected $fillable = ['code', 'name', 'value', 'criteria_id'];
+    protected $fillable = ['code_subcriteria', 'name_subcriteria', 'value_subcriteria', 'criteria_id'];
 
     public function criteria()
     {

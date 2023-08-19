@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('mcriterias', function (Blueprint $table) {
             $table->id();
-            $table->string('code')->unique();
-            $table->string('name');
-            $table->float('value');
+            $table->string('code_criteria')->unique();
+            $table->string('name_criteria');
+            $table->float('value_criteria');
             $table->unsignedBigInteger('type_id');
             $table->foreign('type_id')->references('id')->on('mtypes')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();

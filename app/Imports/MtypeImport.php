@@ -15,8 +15,8 @@ class MtypeImport implements ToModel
     public function model(array $row)
     {
         return new Mtype([
-            'code' => $row[0],
-            'name' => $row[1]
+            'code_type' => $row[0],
+            'name_type' => $row[1]
         ]);
     }
 }

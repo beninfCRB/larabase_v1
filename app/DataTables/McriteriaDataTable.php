@@ -23,7 +23,7 @@ class McriteriaDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->editColumn('type_id', function ($data) {
-                return $data->type->name;
+                return $data->type->name_type;
             })
             ->editColumn('created_at', function ($row) {
                 return date_format($row->created_at, $this->format_date);
@@ -85,9 +85,9 @@ class McriteriaDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('code')->title('Kode Kriteria'),
-            Column::make('name')->title('Nama Kriteria'),
-            Column::make('value')->title('Nilai Kriteria'),
+            Column::make('code_criteria')->title('Kode Kriteria'),
+            Column::make('name_criteria')->title('Nama Kriteria'),
+            Column::make('value_criteria')->title('Nilai Kriteria'),
             Column::make('type_id')->title('Jenis'),
             Column::make('created_at')->title('Tanggal Dibuat'),
             Column::make('updated_at')->title('Tanggal Diubah'),

@@ -100,7 +100,7 @@
                                     class="form-control @error('code')
                             is-invalid
                             @enderror"
-                                    name="code" value="{{ $value->code }}">
+                                    name="code" value="{{ $value->code_type }}">
                                 @error('code')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -114,7 +114,7 @@
                                     class="form-control @error('name')
                             is-invalid
                         @enderror"
-                                    name="name" value="{{ $value->name }}">
+                                    name="name" value="{{ $value->name_type }}">
                                 @error('name')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror

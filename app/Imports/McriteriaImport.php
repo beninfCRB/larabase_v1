@@ -15,9 +15,9 @@ class McriteriaImport implements ToModel
     public function model(array $row)
     {
         return new Mcriteria([
-            'code' => $row[0],
-            'name' => $row[1],
-            'value' => $row[2],
+            'code_criteria' => $row[0],
+            'name_criteria' => $row[1],
+            'value_criteria' => $row[2],
             'type_id' => $row[3]
         ]);
     }

@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('malternatives', function (Blueprint $table) {
             $table->id();
-            $table->string('code')->unique();
-            $table->string('name');
+            $table->string('code_alternative')->unique();
+            $table->string('name_alternative');
             $table->timestamps();
         });
     }

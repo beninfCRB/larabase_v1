@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Malternative extends Model
 {
     use HasFactory;
-    protected $fillable = ['code', 'name'];
+    protected $fillable = ['code_alternative', 'name_alternative'];
 
     public function sample_data()
     {

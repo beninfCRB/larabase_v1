@@ -84,8 +84,8 @@ class MalternativeDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('code')->title('Kode Alternatif'),
-            Column::make('name')->title('Nama Alternatif'),
+            Column::make('code_alternative')->title('Kode Alternatif'),
+            Column::make('name_alternative')->title('Nama Alternatif'),
             Column::make('created_at')->title('Tanggal Dibuat'),
             Column::make('updated_at')->title('Tanggal Diubah'),
             Column::computed('action')

@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('mtypes', function (Blueprint $table) {
             $table->id();
-            $table->string('code')->unique();
-            $table->string('name');
+            $table->string('code_type')->unique();
+            $table->string('name_type');
             $table->timestamps();
         });
     }

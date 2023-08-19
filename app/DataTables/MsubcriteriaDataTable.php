@@ -23,7 +23,7 @@ class MsubcriteriaDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->editColumn('criteria_id', function ($data) {
-                return $data->criteria->name;
+                return $data->criteria->name_criteria;
             })
             ->editColumn('created_at', function ($row) {
                 return date_format($row->created_at, $this->format_date);
@@ -85,9 +85,9 @@ class MsubcriteriaDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('code')->title('Kode Sub-Kriteria'),
-            Column::make('name')->title('Nama Sub-Kriteria'),
-            Column::make('value')->title('Nilai Sub-Kriteria'),
+            Column::make('code_subcriteria')->title('Kode Sub-Kriteria'),
+            Column::make('name_subcriteria')->title('Nama Sub-Kriteria'),
+            Column::make('value_subcriteria')->title('Nilai Sub-Kriteria'),
             Column::make('criteria_id')->title('Kriteria'),
             Column::make('created_at')->title('Tanggal Dibuat'),
             Column::make('updated_at')->title('Tanggal Diubah'),

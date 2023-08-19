@@ -15,9 +15,9 @@ class MsubcriteriaImport implements ToModel
     public function model(array $row)
     {
         return new Msubcriteria([
-            'code' => $row[0],
-            'name' => $row[1],
-            'value' => $row[2],
+            'code_subcriteria' => $row[0],
+            'name_subcriteria' => $row[1],
+            'value_subcriteria' => $row[2],
             'criteria_id' => $row[3]
         ]);
     }

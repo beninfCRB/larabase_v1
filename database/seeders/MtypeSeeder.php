@@ -17,15 +17,15 @@ class MtypeSeeder extends Seeder
         $data = [
             [
                 'id' => 1,
-                'code' => 'J1',
-                'name' => 'Cost',
+                'code_type' => 'J1',
+                'name_type' => 'Cost',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'id' => 2,
-                'code' => 'J2',
-                'name' => 'Benefit',
+                'code_type' => 'J2',
+                'name_type' => 'Benefit',
                 'created_at' => now(),
                 'updated_at' => now(),
             ]

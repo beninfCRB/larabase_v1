@@ -33,6 +33,7 @@ class WpController extends Controller
         $o_kriteria = Mcriteria::all();
         $o_alternatif = Malternative::all();
 
+        // dd($o_kriteria);
         return view('modules.' . $this->route . '.index', compact('title', 'method', 'breadcumb', 'nilai', 'alternatif', 'n_kriteria', 'kriteria', 'jml_krt', 'o_kriteria', 'o_alternatif'));
     }
 }

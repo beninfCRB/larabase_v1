@@ -82,12 +82,12 @@
                                         <th class="text-center">
                                             <h5 class="text-primary">
                                                 @php
-                                                    if ($o->type->name == 'Benefit') {
-                                                        $value[$o->code] = number_format($o->value, 3);
-                                                        echo $constant->number($o->value);
+                                                    if ($o->type->name_type == 'Benefit') {
+                                                        $value[$o->code_criteria] = number_format($o->value_criteria, 3);
+                                                        echo $constant->number($o->value_criteria);
                                                     } else {
-                                                        $value[$o->code] = number_format(0 - $o->value, 3);
-                                                        echo $constant->number(0 - $o->value);
+                                                        $value[$o->code_criteria] = number_format(0 - $o->value_criteria, 3);
+                                                        echo $constant->number(0 - $o->value_criteria);
                                                     }
                                                 @endphp
                                             </h5>
@@ -165,12 +165,12 @@
                             <tbody>
                                 @foreach ($o_alternatif as $o)
                                     <tr class="text-center">
-                                        <td>{{ $o->name }}</td>
+                                        <td>{{ $o->name_alternative }}</td>
                                         <td>
                                             <h5 class="text-primary">
                                                 @php
-                                                    $vektor_s[] = number_format(array_product($temp[$o->code]), 3);
-                                                    echo $constant->number(array_product($temp[$o->code]));
+                                                    $vektor_s[] = number_format(array_product($temp[$o->code_alternative]), 3);
+                                                    echo $constant->number(array_product($temp[$o->code_alternative]));
                                                 @endphp
                                             </h5>
                                         </td>
@@ -204,11 +204,11 @@
                                 @endphp
                                 @foreach ($o_alternatif as $o)
                                     <tr class="text-center">
-                                        <td>{{ $o->name }}</td>
+                                        <td>{{ $o->name_alternative }}</td>
                                         <td>
                                             <h5 class="text-primary">
                                                 @php
-                                                    $vektor_v = number_format(array_product($temp[$o->code]) / $bottom, 3);
+                                                    $vektor_v = number_format(array_product($temp[$o->code_alternative]) / $bottom, 3);
                                                     $rank[] = $vektor_v;
                                                     echo $constant->number($vektor_v);
                                                 @endphp
@@ -237,12 +237,12 @@
                             <tbody>
                                 @foreach ($o_alternatif as $o)
                                     <tr class="text-center">
-                                        <td>{{ $o->name }}</td>
+                                        <td>{{ $o->name_alternative }}</td>
                                         <td>
                                             <h5 class="text-danger">
                                                 @php
                                                     sort($rank);
-                                                    echo array_search(number_format(array_product($temp[$o->code]) / $bottom, 3), $rank) + 1;
+                                                    echo array_search(number_format(array_product($temp[$o->code_alternative]) / $bottom, 3), $rank) + 1;
                                                 @endphp
                                             </h5>
                                         </td>

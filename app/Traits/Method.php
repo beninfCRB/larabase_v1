@@ -16,16 +16,16 @@ trait Method
             ->orderBy('alternative_id', 'asc')
             ->select(
                 '*',
-                'b.code as kode_kriteria',
+                'b.code_criteria as kode_kriteria',
                 'b.id as id_kriteria',
-                'b.value as bobot',
-                'b.name as nama_kriteria',
-                'c.code as kode_alternatif',
+                'b.value_criteria as bobot',
+                'b.name_criteria as nama_kriteria',
+                'c.code_alternative as kode_alternatif',
                 'c.id as id_alternatif',
-                'c.name as nama_alternatif',
+                'c.name_alternative as nama_alternatif',
                 'a.id as id_data',
-                'a.value as nilai',
-                'd.name as jenis'
+                'a.value_sample_data as nilai',
+                'd.name_type as jenis'
             )
             ->get();
     }
@@ -65,7 +65,7 @@ trait Method
     public function max($criteria_id)
     {
         $data = DB::table('sample_data')
-            ->select(DB::raw('max(value) as max'))
+            ->select(DB::raw('max(value_sample_data) as max'))
             ->where('criteria_id', '=', $criteria_id)
             ->first();
 
@@ -75,7 +75,7 @@ trait Method
     public function min($criteria_id)
     {
         $data = DB::table('sample_data')
-            ->select(DB::raw('min(value) as min'))
+            ->select(DB::raw('min(value_sample_data) as min'))
             ->where('criteria_id', '=', $criteria_id)
             ->first();
 
@@ -84,7 +84,7 @@ trait Method
 
     public function check_value()
     {
-        $data = DB::table('sample_data')->where('value', '=', 0)->first();
+        $data = DB::table('sample_data')->where('value_sample_data', '=', 0)->first();
         return isset($data);
     }
 

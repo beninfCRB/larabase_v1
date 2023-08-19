@@ -70,9 +70,9 @@ class McriteriaController extends Controller
 
         try {
             $new = Mcriteria::create([
-                'code' => strtoupper($request->code),
-                'name' => $request->name,
-                'value' => $request->value,
+                'code_criteria' => strtoupper($request->code),
+                'name_criteria' => $request->name,
+                'value_criteria' => $request->value,
                 'type_id' => $request->type_id
             ]);
 
@@ -83,7 +83,7 @@ class McriteriaController extends Controller
                     SampleData::create([
                         'alternative_id' => $a->alternative_id,
                         'criteria_id' => $new->id,
-                        'value' => 0
+                        'value_sample_data' => 0
                     ]);
                 }
             }
@@ -131,9 +131,9 @@ class McriteriaController extends Controller
             $user = Mcriteria::find($id);
 
             $user->update([
-                'code' => strtoupper($request->code),
-                'name' => $request->name,
-                'value' => $request->value,
+                'code_criteria' => strtoupper($request->code),
+                'name_criteria' => $request->name,
+                'value_criteria' => $request->value,
                 'type_id' => $request->type_id
             ]);
             return redirect()->route($this->route . '.index')->with('success', 'Data berhasil diubah');

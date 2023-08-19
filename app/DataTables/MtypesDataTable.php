@@ -84,8 +84,8 @@ class MtypesDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('code')->title('Kode Jenis'),
-            Column::make('name')->title('Nama Jenis'),
+            Column::make('code_type')->title('Kode Jenis'),
+            Column::make('name_type')->title('Nama Jenis'),
             Column::make('created_at')->title('Tanggal Dibuat'),
             Column::make('updated_at')->title('Tanggal Diubah'),
             // Column::computed('action')

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Mtype extends Model
 {
     use HasFactory;
-    protected $fillable = ['id', 'code', 'name'];
+    protected $fillable = ['id', 'code_type', 'name_type'];
 
     public function criteria()
     {

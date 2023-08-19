@@ -67,8 +67,8 @@ class MalternativeController extends Controller
 
         try {
             Malternative::create([
-                'code' => strtoupper($request->code),
-                'name' => $request->name,
+                'code_alternative' => strtoupper($request->code),
+                'name_alternative' => $request->name,
             ]);
 
             return redirect()->route($this->route . '.index')->with('success', 'Data berhasil ditambahkan');
@@ -113,8 +113,8 @@ class MalternativeController extends Controller
         try {
             $user = Malternative::find($id);
             $user->update([
-                'code' => strtoupper($request->code),
-                'name' => $request->name
+                'code_alternative' => strtoupper($request->code),
+                'name_alternative' => $request->name
             ]);
             return redirect()->route($this->route . '.index')->with('success', 'Data berhasil diubah');
         } catch (\Exception $e) {

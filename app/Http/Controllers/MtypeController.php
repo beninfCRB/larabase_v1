@@ -65,8 +65,8 @@ class MtypeController extends Controller
 
         try {
             Mtype::create([
-                'code' => strtoupper($request->code),
-                'name' => $request->name,
+                'code_type' => strtoupper($request->code),
+                'name_type' => $request->name,
             ]);
 
             return redirect()->route($this->route . '.index')->with('success', 'Data berhasil ditambahkan');
@@ -111,8 +111,8 @@ class MtypeController extends Controller
         try {
             $user = Mtype::find($id);
             $user->update([
-                'code' => strtoupper($request->code),
-                'name' => $request->name
+                'code_type' => strtoupper($request->code),
+                'name_type' => $request->name
             ]);
             return redirect()->route($this->route . '.index')->with('success', 'Data berhasil diubah');
         } catch (\Exception $e) {

@@ -84,7 +84,22 @@
                     </div>
 
                     <div class="row">
-                        <x-Select :label="'Jenis Kriteria'" :name="'type_id'" :data="$type" :method="'add'" />
+                        <div class="form-group col-12">
+                            <label for="subkriteria">Sub-Kriteria</label>
+                            <select class="form-control" name="type_id" id="type_id">
+                                <option value="0" disable="true" selected="true">========Pilih
+                                    Sub-Kriteria========
+                                </option>
+                                @foreach ($type as $v)
+                                    <option value="{{ $v->id }}">
+                                        {{ $v->code_type }} - {{ $v->name_type }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('type_id')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
 
                     <x-CreateButton />
@@ -117,7 +132,7 @@
                                     class="form-control @error('code')
                                 is-invalid
                                 @enderror"
-                                    name="code" value="{{ $value->code }}">
+                                    name="code" value="{{ $value->code_criteria }}">
                                 @error('code')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -131,7 +146,7 @@
                                     class="form-control @error('name')
                                 is-invalid
                             @enderror"
-                                    name="name" value="{{ $value->name }}">
+                                    name="name" value="{{ $value->name_criteria }}">
                                 @error('name')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -145,7 +160,7 @@
                                     class="form-control @error('value')
                                 is-invalid
                             @enderror"
-                                    name="value" value="{{ $value->value }}">
+                                    name="value" value="{{ $value->value_criteria }}">
                                 @error('value')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -153,8 +168,22 @@
                         </div>
 
                         <div class="row">
-                            <x-Select :label="'Jenis Kriteria'" :name="'type_id'" :data="$type" :value="$value->type_id"
-                                :method="'edit'" />
+                            <div class="form-group col-12">
+                                <label for="type_id">Sub-Kriteria</label>
+                                <select class="form-control" name="type_id" id="type_id">
+                                    <option value="{{ $value->type_id }}" disable="true" selected="true">
+                                        {{ $value->type->code_type }} - {{ $value->type->name_type }}
+                                    </option>
+                                    @foreach ($type as $v)
+                                        <option value="{{ $v->id }}">
+                                            {{ $v->code_type }} - {{ $v->name_type }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('type_id')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
                         </div>
 
                         <x-CreateButton />

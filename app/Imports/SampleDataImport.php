@@ -17,7 +17,7 @@ class SampleDataImport implements ToModel
         return new SampleData([
             'alternative_id' => $row[0],
             'criteria_id' => $row[1],
-            'value' => $row[2],
+            'value_sample_data' => $row[2],
         ]);
     }
 }

@@ -94,7 +94,7 @@ class SampleDataController extends Controller
                 SampleData::create([
                     'alternative_id' => $request->alternative_id,
                     'criteria_id' => Mcriteria::where('code', 'C' . $i)->first()->id,
-                    'value' => 0
+                    'value_sample_data' => 0
                 ]);
             }
 
@@ -142,7 +142,7 @@ class SampleDataController extends Controller
         try {
             $user = SampleData::find($id);
             $user->update([
-                'value' => $request->value
+                'value_sample_data' => $request->value
             ]);
             return redirect()->route($this->route . '.index')->with('success', 'Data berhasil diubah');
         } catch (\Exception $e) {
@@ -158,7 +158,7 @@ class SampleDataController extends Controller
      */
     public function destroy($id)
     {
-        $alternatif = Malternative::where('code', $id)->first();
+        $alternatif = Malternative::where('code_alternative', $id)->first();
         $user = SampleData::where('alternative_id', $alternatif->id)->delete();
 
         return redirect()->route($this->route . '.index')->with('success', 'Data Berhasil Dihapus');

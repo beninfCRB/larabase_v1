@@ -69,9 +69,9 @@ class MsubcriteriaController extends Controller
 
         try {
             Msubcriteria::create([
-                'code' => strtoupper($request->code),
-                'name' => $request->name,
-                'value' => $request->value,
+                'code_subcriteria' => strtoupper($request->code),
+                'name_subcriteria' => $request->name,
+                'value_subcriteria' => $request->value,
                 'criteria_id' => $request->criteria_id
             ]);
 
@@ -118,9 +118,9 @@ class MsubcriteriaController extends Controller
             $user = Msubcriteria::find($id);
 
             $user->update([
-                'code' => strtoupper($request->code),
-                'name' => $request->name,
-                'value' => $request->value,
+                'code_subriteria' => strtoupper($request->code),
+                'name_subcriteria' => $request->name,
+                'value_subcriteria' => $request->value,
                 'criteria_id' => $request->criteria_id
             ]);
             return redirect()->route($this->route . '.index')->with('success', 'Data berhasil diubah');
