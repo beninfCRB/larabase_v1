@@ -96,7 +96,22 @@
                     @csrf
 
                     <div class="row">
-                        <x-Select :label="'Alternatif'" :name="'alternative_id'" :data="$malternative" :method="'add'" />
+                        <div class="form-group col-12">
+                            <label for="alternative_id">Alternative</label>
+                            <select class="form-control" name="alternative_id" id="alternative_id">
+                                <option value="0" disable="true" selected="true">========Pilih
+                                    Alternatif========
+                                </option>
+                                @foreach ($malternative as $v)
+                                    <option value="{{ $v->id }}">
+                                        {{ $v->code_alternative }} - {{ $v->name_alternative }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('alternative_id')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
 
                     <x-CreateButton />
@@ -184,8 +199,8 @@
             $.each(data, function(index, obj) {
                 $('.subkriteria' + {{ $value->criteria_id }}).append(
                     '<option value="' + obj
-                    .value + '">' + obj
-                    .name +
+                    .value_subcriteria + '">' + obj
+                    .name_subcriteria +
                     '</option>');
             })
         });
