@@ -116,11 +116,11 @@
                                         <td>{{ $krit['C1']['nama_alternatif'] }}</td>
                                         @foreach ($kriteria as $k)
                                             @php
-                                                $jenis = $krit[$k]['jenis'];
-                                                $max = $constant->max($krit[$k]['id_kriteria']);
-                                                $min = $constant->min($krit[$k]['id_kriteria']);
+                                                $jenis = $krit[$k]['jenis']; // hasil benefit
+                                                $max = $constant->max($krit[$k]['id_kriteria']); // set paramater 1 dengan hasil 10
+                                                $min = $constant->min($krit[$k]['id_kriteria']); // set parameter 1 dengan hasil 1
                                                 if ($jenis == 'Benefit') {
-                                                    $x = ($krit[$k]['nilai'] - $min) / ($max - $min);
+                                                    $x = ($krit[$k]['nilai'] - $min) / ($max - $min); // variabel x hasil perhituangan (2,5 - 1) / (10-1)
                                                 } elseif ($jenis == 'Cost') {
                                                     $x = ($krit[$k]['nilai'] - $max) / ($min - $max);
                                                 } else {
@@ -187,8 +187,8 @@
                                                 $max = $constant->max($krit[$k]['id_kriteria']);
                                                 $min = $constant->min($krit[$k]['id_kriteria']);
                                                 if ($jenis == 'Benefit') {
-                                                    $v = ($krit[$k]['nilai'] - $min) / ($max - $min);
-                                                    $v_hasil = $v * $krit[$k]['bobot'] + $krit[$k]['bobot'];
+                                                    $v = ($krit[$k]['nilai'] - $min) / ($max - $min); // hasil samakan dengan matriks normalisasi 0,167
+                                                    $v_hasil = $v * $krit[$k]['bobot'] + $krit[$k]['bobot']; // hasil 0,167 * 0,3 + 0,3 = 0,350
                                                 } elseif ($jenis == 'Cost') {
                                                     $v = ($krit[$k]['nilai'] - $max) / ($min - $max);
                                                     $v_hasil = $v * $krit[$k]['bobot'] + $krit[$k]['bobot'];
@@ -196,7 +196,7 @@
                                                     $v_hasil = 0;
                                                 }
                                                 
-                                                $temp[$krit[$k]['id_kriteria']][$krit[$k]['nama_alternatif']] = $v_hasil;
+                                                $temp[$krit[$k]['id_kriteria']][$krit[$k]['nama_alternatif']] = $v_hasil; // objek temp indeks 1 dan indeks Noval = 0,350
                                             @endphp
                                             <td class="text-center">
                                                 <h5 class="text-primary">{{ $constant->number($v_hasil) }}
@@ -243,25 +243,25 @@
                             <tbody>
                                 <tr>
                                     @php
-                                        $pangkat = 1 / count($alternatif);
+                                        $pangkat = 1 / count($alternatif); // 1 / count (menghitung data) dari alternatif = 10 yg hasilnya 0,1
                                     @endphp
                                     @foreach ($temp as $t => $data)
                                         @php
                                             foreach ($alternatif as $a) {
-                                                $pos[] = number_format($data[$a], 3);
+                                                $pos[] = number_format($data[$a], 3); // variabel pos = indeks 1 indeks noval hasilnya 0,350
                                             }
                                         @endphp
                                         <th class="text-center">
                                             <h5 class="text-primary">
                                                 @php
-                                                    $l = number_format(pow(array_product($pos), $pangkat), 3);
+                                                    $l = number_format(pow(array_product($pos), $pangkat), 3); // variabel l isinya perhitungan pow (perpangkatan https://www.w3schools.com/php/phptryit.asp?filename=tryphp_func_math_pow ) paramater array product (https://www.w3schools.com/php/phptryit.asp?filename=tryphp_func_array_product) pow(0,350 , 0,1)
                                                     echo $constant->number($l);
                                                 @endphp
                                             </h5>
                                         </th>
                                         @php
                                             $pos = [];
-                                            $G[$t] = $l;
+                                            $G[$t] = $l; // variabel G ber indeks 1 = 0,391
                                         @endphp
                                     @endforeach
                                 </tr>
@@ -314,13 +314,13 @@
                                         <td>{{ $krit['C1']['nama_alternatif'] }}</td>
                                         @foreach ($kriteria as $k)
                                             @php
-                                                $id_kriteria = $krit[$k]['id_kriteria'];
+                                                $id_kriteria = $krit[$k]['id_kriteria']; // varibael id kriteria hasilnya 1
                                                 $jenis = $krit[$k]['jenis'];
                                                 $max = $constant->max($id_kriteria);
                                                 $min = $constant->min($id_kriteria);
                                                 if ($jenis == 'Benefit') {
-                                                    $v = ($krit[$k]['nilai'] - $min) / ($max - $min);
-                                                    $v_hasil = $v * $krit[$k]['bobot'] + $krit[$k]['bobot'];
+                                                    $v = ($krit[$k]['nilai'] - $min) / ($max - $min); // hasilnya 0,167
+                                                    $v_hasil = $v * $krit[$k]['bobot'] + $krit[$k]['bobot']; // hasilnya 0,350
                                                 } elseif ($jenis == 'Cost') {
                                                     $v = ($krit[$k]['nilai'] - $max) / ($min - $max);
                                                     $v_hasil = $v * $krit[$k]['bobot'] + $krit[$k]['bobot'];
@@ -328,8 +328,8 @@
                                                     $v_hasil = 0;
                                                 }
                                                 
-                                                $y[$id_kriteria] = number_format($v_hasil - $G[$id_kriteria], 3);
-                                                $z[$id_kriteria] = $krit['C1']['nama_alternatif'];
+                                                $y[$id_kriteria] = number_format($v_hasil - $G[$id_kriteria], 3); // variabel baru y berindeks 1 = 0,350 s/d 0,391 hasilnya -0,041
+                                                $z[$id_kriteria] = $krit['C1']['nama_alternatif']; // hasilnya Noval
                                             @endphp
                                             <td class="text-center">
                                                 <h5 class="text-primary">
@@ -339,7 +339,7 @@
                                         @endforeach
                                     </tr>
                                     @php
-                                        $finis[] = ['nilai' => array_sum($y), 'nama' => array_unique($z)];
+                                        $finis[] = ['nilai' => array_sum($y), 'nama' => array_unique($z)]; // objek finis dengan indeks nilai = array_sum nilai -0,041 s/d  -0,391https://www.w3schools.com/php/phptryit.asp?filename=tryphp_func_array_sum dan indeks nama = Noval
                                     @endphp
                                 @endforeach
                             </tbody>
@@ -373,10 +373,10 @@
                             <tbody>
                                 @php
                                     foreach ($finis as $f) {
-                                        $arr[] = $f['nilai'];
+                                        $arr[] = $f['nilai']; // array arr isinya -0,155 s/d -0,038
                                     }
-                                    $rank = $arr;
-                                    sort($rank);
+                                    $rank = $arr; // variable rank isinya variable arr
+                                    sort($rank); // diurutkan deangan sort  https://www.w3schools.com/php/phptryit.asp?filename=tryphp_array_sort_num
                                 @endphp
                                 @foreach ($finis as $z)
                                     <tr>

@@ -35,12 +35,12 @@ trait Method
         $data = $this->sample();
         $sample = [];
         foreach ($data as $t) {
-            if (empty($sample[$t->kode_alternatif])) {
-                $sample[$t->kode_alternatif] = [];
+            if (empty($sample[$t->kode_alternatif])) { // cek apakah ada nilai variabel objek sampel ber indeks kode altiernatif
+                $sample[$t->kode_alternatif] = []; // objek sampel ber indeks kode alternatif (sample->A1-A10)
             }
-            if (empty($sample[$t->kode_alternatif][$t->kode_kriteria])) {
-                $sample[$t->kode_alternatif][$t->kode_kriteria] = [];
-                $sample[$t->kode_alternatif][$t->kode_kriteria]['id_data'] = $t->id_data;
+            if (empty($sample[$t->kode_alternatif][$t->kode_kriteria])) { // objek sampel diatas itu udah dibuat maka buat indeks kode kriteria
+                $sample[$t->kode_alternatif][$t->kode_kriteria] = []; // buat objek sampel indeks kode alternatif dan kode kriteria (sample->A1-A10)
+                $sample[$t->kode_alternatif][$t->kode_kriteria]['id_data'] = $t->id_data; // 
                 $sample[$t->kode_alternatif][$t->kode_kriteria]['nilai'] = $t->nilai;
                 $sample[$t->kode_alternatif][$t->kode_kriteria]['id_kriteria'] = $t->id_kriteria;
                 $sample[$t->kode_alternatif][$t->kode_kriteria]['jenis'] = $t->jenis;
@@ -105,7 +105,7 @@ trait Method
     }
 }
 
-class constant
+class constant  //class constant = method
 {
     use Method;
 }
