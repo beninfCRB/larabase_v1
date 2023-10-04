@@ -1,5 +1,6 @@
     <!-- Topbar -->
-    <nav class="navbar sticky-top navbar-expand navbar-light bg-white topbar mb-4 static-top shadow top-bar">
+    <nav
+        class="ml-2 mr-2 mt-4 navbar sticky-top navbar-expand navbar-light bg-white topbar mb-4 static-top shadow top-bar">
 
         <!-- Sidebar Toggle (Topbar) -->
         <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
