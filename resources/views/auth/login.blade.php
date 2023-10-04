@@ -15,7 +15,8 @@
                                         <img src="{{ asset('image/logo.png') }}" alt="" width="100px"
                                             height="auto">
                                         <h5 class="card-title text-center pb-0 fs-4">
-                                            Sistem Pendukung Keputusan Penentuan Prioritas Pembinaan Industri Makanan</h5>
+                                            Sistem Pendukung Keputusan Penentuan Prioritas Pembinaan Industri Makanan
+                                        </h5>
                                         <p class="text-center small">Masukkan email & kata sandi Anda untuk login</p>
                                     </div>
 
@@ -61,7 +62,7 @@
                                             </div>
                                         </div>
                                         <div class="col-12">
-                                            <button class="btn btn-primary w-100"
+                                            <button class="btn btn-success w-100"
                                                 type="submit">{{ __('Masuk') }}</button>
                                         </div>
                                         <div class="col-12">

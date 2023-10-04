@@ -39,7 +39,7 @@
             <!-- Content Wrapper -->
             <div id="content-wrapper" class="d-flex flex-column">
                 <!-- Main Content -->
-                <div id="content">
+                <div id="content" class="bg-app-layout">
                     @if (!in_array($title, $route))
                         <!-- ======= Topbar ======= -->
                         @include('layouts.topbar')
@@ -77,6 +77,16 @@
     </div>
     @include('sweetalert::alert')
     @stack('scripts')
+    <style>
+        .bg-app-layout {
+            background-image: url({{ asset('image/bg.jpg') }});
+            height: 100%;
+
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
     <script type="module">
         $('.btn-print').click(function() {
             $('.breadcumb').hide()

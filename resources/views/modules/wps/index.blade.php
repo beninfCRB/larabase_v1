@@ -11,7 +11,7 @@
                 <button class="btn btn-success btn-print"><i class="fas fa-print"></i> Print</button>
             </div>
         </div>
-        <div class="card shadow-lg">
+        <div class="card opacity-75 text-success  shadow-lg border border-success">
             <h1 class="mx-auto mt-4">{{ $method }}</h1>
             <div class="card-body">
                 <div class="row">

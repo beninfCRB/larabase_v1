@@ -1,18 +1,23 @@
     <!-- Topbar -->
-    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow top-bar">
+    <nav class="navbar sticky-top navbar-expand navbar-light bg-white topbar mb-4 static-top shadow top-bar">
 
         <!-- Sidebar Toggle (Topbar) -->
         <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
         </button>
 
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="ml-2 d-none d-md-inline">
+            <button type="button" class="border-0 btn" id="sidebarToggle"><i class="fas fa-bars fa-lg"></i></button>
+        </div>
+
         <!-- Topbar Navbar -->
         <ul class="navbar-nav ml-auto">
 
             <!-- Nav Item - Search Dropdown (Visible Only XS) -->
             <li class="nav-item dropdown no-arrow d-sm-none">
-                <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-search fa-fw"></i>
                 </a>
                 <!-- Dropdown - Messages -->

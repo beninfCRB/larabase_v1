@@ -6,7 +6,7 @@
         <h1 class="h3 mb-2 text-gray-800 font-weight-bold">{{ $title }}</h1>
         {{-- {{ dd($breadcumb) }} --}}
         <x-BreadCumb :breadcumb="$breadcumb" />
-        <div class="card col-md-12 shadow-lg">
+        <div class="card opacity-75 text-success  col-md-12 shadow-lg border border-success">
             <h1 class="mx-auto mt-4">{{ $method }}</h1>
             <div class="card-body col-md-6 border rounded mx-auto p-4 m-4 shadow-lg">
                 <x-BackButton module="users" />

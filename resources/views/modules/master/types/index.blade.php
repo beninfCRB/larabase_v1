@@ -5,7 +5,7 @@
         <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800 font-weight-bold">{{ $title }}</h1>
         <x-BreadCumb :breadcumb="$breadcumb" />
-        <div class="card shadow-lg">
+        <div class="card opacity-75 text-success  shadow-lg border border-success">
             <h1 class="mx-auto mt-4">{{ $method }}</h1>
             {{-- <div class="row ml-auto">
                 <div class="col">
