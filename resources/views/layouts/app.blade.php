@@ -91,13 +91,13 @@
         $('.btn-print').click(function() {
             $('.breadcumb').hide()
             $('.top-bar').hide()
-            $('.sidebar').hide()
+            /* $('.sidebar').hide() */
             $('.footer').hide()
             window.onafterprint = function(e) {
                 $(window).off('mousemove', window.onafterprint);
                 $('.breadcumb').show()
                 $('.top-bar').show()
-                $('.sidebar').show()
+                /* $('.sidebar').show() */
                 $('.footer').show()
             };
 

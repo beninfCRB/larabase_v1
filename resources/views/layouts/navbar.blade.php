@@ -21,15 +21,17 @@
     </li>
 @endif
 @if (!$check1)
-    <li class="nav-item">
-        <a class="nav-link {{ strstr($title, 'Perhitungan Mabac') ? 'text-success' : 'text-black' }}"
-            href="{{ route('mabacs') }}">Perhitungan Mabac</a>
-    </li>
-@endif
-@if (!$check1)
-    <li class="nav-item">
-        <a class="nav-link {{ strstr($title, 'Perhitungan Weight Product') ? 'text-success' : 'text-black' }}"
-            href="{{ route('wps') }}">Perhitungan Weight Product</a>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle {{ strstr($title, 'Perhitungan') ? 'text-success' : 'text-black' }}"
+            href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+            Perhitungan
+        </a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item {{ strstr($title, 'Perhitungan Mabac') ? 'text-success' : 'text-black' }}"
+                href="{{ route('mabacs') }}">Mabac</a>
+            <a class="dropdown-item {{ strstr($title, 'Perhitungan Weight Product') ? 'text-success' : 'text-black' }}"
+                href="{{ route('wps') }}">Weight Product</a>
+        </div>
     </li>
 @endif
 @if (!$check1)
