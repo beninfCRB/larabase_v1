@@ -33,7 +33,7 @@
         <div id="wrapper">
             @if (!in_array($title, $route))
                 <!-- ======= Sidebar ======= -->
-                @include('layouts.sidebar')
+                {{-- @include('layouts.sidebar') --}}
                 <!-- End Sidebar-->
             @endif
             <!-- Content Wrapper -->
@@ -80,7 +80,7 @@
     <style>
         .bg-app-layout {
             background-image: url({{ asset('image/bg.jpg') }});
-            height: 100%;
+            height: 100vh;
 
             background-position: center;
             background-repeat: no-repeat;
